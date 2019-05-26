@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-
-        return view('')->with('student', Student::all());
+        return view('profile.getProfile');
     }
 
     public function create(Request $request)
