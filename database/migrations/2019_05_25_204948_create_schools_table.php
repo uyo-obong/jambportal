@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOlevelsTable extends Migration
+class CreateSchoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateOlevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('olevels', function (Blueprint $table) {
+        Schema::create('schools', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('exam_type');
-            $table->string('center_number');
-            $table->integer('reg_no');
-            $table->string('exam_year');
-            $table->string('five_subjects');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateOlevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('olevels');
+        Schema::dropIfExists('schools');
     }
 }
