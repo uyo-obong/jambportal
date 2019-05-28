@@ -14,11 +14,10 @@ class CreateExamsTable extends Migration
     public function up()
     {
         Schema::create('exams', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('address');
             $table->string('city');
-            $table->string('local_government');
             $table->string('state');
             $table->string('country');
             $table->timestamps();

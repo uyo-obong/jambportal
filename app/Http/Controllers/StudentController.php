@@ -54,7 +54,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::where('id', $id)->first();
-        return view('', compact('student'));
+        // return view('', compact('student'));
 
     }
 

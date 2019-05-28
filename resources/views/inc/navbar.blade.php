@@ -30,7 +30,19 @@
   <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
   <li class="dropdown-divider"></li>
   <li class="dropdown-divider"></li>
-  <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+  <li class="dropdown-item"><i class="icon-power mr-2"></i>
+
+    <a  href="{{ route('logout') }}"
+    onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+    {{ __('Logout') }}
+  </a></li>
+
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+  </form>
+
+
 </ul>
 </li>
 </ul>

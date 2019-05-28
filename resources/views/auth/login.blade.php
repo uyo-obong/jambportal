@@ -78,11 +78,11 @@
       @endif
     </div>
   </div>
-  <button type="button" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Login</button>
+  <button type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Login</button>
   <div class="text-center pt-3">
     {{-- <p></p> --}}
     <hr>
-    <p class="text-muted">Do not have a profile? <a href="{{ route('register') }}"> Register here</a></p>
+    <p class="text-muted">Do not have a profile? <a href="{{ route('portal.register') }}"> Register here</a></p>
   </div>
 </form>
 </div>

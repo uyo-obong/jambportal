@@ -10,7 +10,7 @@
   <meta name="author" content=""/>
   <title>Rocker - Bootstrap4  Admin Dashboard Template</title>
   <!--favicon-->
-  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="{{ URL::to('assets/images/favicon.ico') }}" type="image/x-icon">
   <!-- Bootstrap core CSS-->
   <link href="{{ URL::to('assets/css/bootstrap.min.css') }}" rel="stylesheet"/>
   <!-- animate CSS-->
@@ -23,88 +23,98 @@
 </head>
 
 <body>
- <!-- Start wrapper-->
- <div id="wrapper">
-   <div class="card-authentication2 mx-auto my-3">
-    <div class="card-group">
-      <div class="card mb-0">
-       <div class="bg-signup2"></div>
-       <div class="card-img-overlay rounded-left my-5">
-         <h2 class="text-white">Create Your Profile</h2>
-         <p class="card-text text-white pt-3">You have to create profile before you can register for JAMB CBT Exam. And also note that this profile is only valid for one candidate and also, you must be 16 years and above in other to register.</p>
-       </div>
+
+ @if(session()->has('status'))
+ <div class="load"></div>
+ <script>
+  window.addEventListener('load', function(event) {
+    swal("Oopz!", "{{ session()->get('status') }}", "error");
+  });
+</script>
+@endif
+
+<!-- Start wrapper-->
+<div id="wrapper">
+ <div class="card-authentication2 mx-auto my-3">
+  <div class="card-group">
+    <div class="card mb-0">
+     <div class="bg-signup2"></div>
+     <div class="card-img-overlay rounded-left my-5">
+       <h2 class="text-white">Create Your Profile</h2>
+       <p class="card-text text-white pt-3">You have to create profile before you can register for JAMB CBT Exam. And also note that this profile is only valid for one candidate and also, you must be 16 years and above in other to register.</p>
      </div>
+   </div>
 
-     <div class="card mb-0">
-      <div class="card-body">
-        <div class="card-content p-3">
-          <div class="text-center">
-            <img src="assets/images/logo-icon.png">
-          </div>
-          <div class="card-title text-uppercase text-center py-3">Profile</div>
-          <form id="signupForm" method="POST" action="{{ route('register') }}">
-            @csrf
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                 <div class="position-relative has-icon-left">
-                  <label for="input-1" class="sr-only">Name</label>
-                  <input type="text" id="input-1" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="First Name">
-                  <div class="form-control-position">
-                    <i class="icon-user"></i>
-                  </div>
-
-                  @error('name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="position-relative has-icon-left">
-                  <label for="input-14" class="sr-only">Enter Age</label>
-                  <input type="text" id="input-14" name="age" class="form-control" placeholder="Enter Age" required>
-                  <div class="form-control-position">
-                    <i class="icon-user"></i>
-                  </div>
-                </div>
-              </div>
-            </v-container>
-          </div>
+   <div class="card mb-0">
+    <div class="card-body">
+      <div class="card-content p-3">
+        <div class="text-center">
+          <img src="{{ URL::to('assets/images/logo-icon.png') }}">
         </div>
-        <div class="form-group">
-         <div class="position-relative has-icon-left">
-          <label for="exampleInputEmailId" class="sr-only">Email Address</label>
-          <input type="text" id="exampleInputEmailId" name="email" class="form-control" placeholder="Email Address" required>
-          <div class="form-control-position">
-            <i class="icon-envelope-open"></i>
-          </div>
+        <div class="card-title text-uppercase text-center py-3">Profile</div>
+        <form id="signupForm" method="POST" action="{{ route('portal.create') }}">
+          @csrf
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+               <div class="position-relative has-icon-left">
+                <label for="input-1" class="sr-only">Name</label>
+                <input type="text" id="input-1" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="First Name">
+                <div class="form-control-position">
+                  <i class="icon-user"></i>
+                </div>
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="position-relative has-icon-left">
+                <label for="input-14" class="sr-only">Enter Age</label>
+                <input type="text" id="input-14" name="age" value="{{ old('age') }}" class="form-control" placeholder="Enter Age" required>
+                <div class="form-control-position">
+                  <i class="icon-user"></i>
+                </div>
+              </div>
+            </div>
+          </v-container>
         </div>
       </div>
       <div class="form-group">
        <div class="position-relative has-icon-left">
-        <label for="exampleInputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <label for="exampleInputEmailId" class="sr-only">Email Address</label>
+        <input type="text" id="exampleInputEmailId" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email Address" required>
         <div class="form-control-position">
-          <i class="icon-lock"></i>
+          <i class="icon-envelope-open"></i>
         </div>
       </div>
     </div>
     <div class="form-group">
      <div class="position-relative has-icon-left">
-      <label for="exampleInputRetryPassword" class="sr-only">Retype Password</label>
-      <input type="password" id="exampleInputRetryPassword" name="confirm_password" class="form-control" placeholder="Retry Password" required>
+      <label for="exampleInputPassword" class="sr-only">Password</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
       <div class="form-control-position">
         <i class="icon-lock"></i>
       </div>
     </div>
   </div>
   <div class="form-group">
-   <div class="icheck-primary">
-    <input type="checkbox" id="user-checkbox" checked="" />
-    <label for="user-checkbox">I Accept terms & conditions</label>
+   <div class="position-relative has-icon-left">
+    <label for="exampleInputRetryPassword" class="sr-only">Retype Password</label>
+    <input type="password" id="exampleInputRetryPassword" name="password_confirmation" class="form-control" placeholder="Retry Password" required>
+    <div class="form-control-position">
+      <i class="icon-lock"></i>
+    </div>
   </div>
+</div>
+<div class="form-group">
+ <div class="icheck-primary">
+  <input type="checkbox" id="user-checkbox" checked="" />
+  <label for="user-checkbox">I Accept terms & conditions</label>
+</div>
 </div>
 <button type="submit" class="btn btn-outline-primary btn-block waves-effect waves-light">Create</button>
 <div class="text-center pt-3">
@@ -127,6 +137,11 @@
 <script src="{{ URL::to('assets/js/jquery.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/popper.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
+
+<!--Sweet Alerts -->
+<script src="{{ URL::to('assets/plugins/alerts-boxes/js/sweetalert.min.js') }}"></script>
+<script src="assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+
 <!--Form Validatin Script-->
 <script src="{{ URL::to('assets/plugins/jquery-validation/js/jquery.validate.min.js') }}"></script>
 <script>
@@ -146,7 +161,7 @@
         required: true,
         minlength: 6
       },
-      confirm_password: {
+      password_confirmation: {
         required: true,
         minlength: 6,
         equalTo: "#password"
@@ -166,7 +181,7 @@
         required: "Please provide a password",
         minlength: "Your password must be at least 6 characters long"
       },
-      confirm_password: {
+      password_confirmation: {
         required: "Please provide a password",
         minlength: "Your password must be at least 6 characters long",
         equalTo: "Please enter the same password as above"

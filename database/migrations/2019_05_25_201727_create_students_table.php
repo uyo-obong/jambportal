@@ -14,18 +14,18 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('first_name');
+            $table->increments('id');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->string('age');
             $table->integer('phone');
-            $table->string('email')->unique();
-            $table->string('state');
-            $table->string('zones_id');
-            $table->string('local_government');
-            $table->string('country');
             $table->string('address');
+            $table->string('city');
+            $table->string('state');
+            $table->string('country');
+
+            $table->integer('user_id')->unsigned();
+            $table->integer('zone_id')->unsigned();
+
             $table->timestamp('email_verified_at')->nullable();
 
         });

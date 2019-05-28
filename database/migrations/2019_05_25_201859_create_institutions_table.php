@@ -14,10 +14,12 @@ class CreateInstitutionsTable extends Migration
     public function up()
     {
         Schema::create('institutions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('institution_name');
-            $table->string('school_name');
             $table->string('department');
+
+            $table->integer('school_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
