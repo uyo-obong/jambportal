@@ -24,7 +24,9 @@
     <link href="{{ URL::to('assets/css/sidebar-menu.css') }}" rel="stylesheet"/>
     <!-- Custom Style-->
     <link href="{{ URL::to('assets/css/app-style.css') }}" rel="stylesheet"/>
-
+    
+    @section('header_css')
+    @show
 </head>
 <body>
     {{-- <div id="app">
@@ -108,5 +110,8 @@
 <script src="{{ URL::to('assets/plugins/Chart.js/Chart.min.js') }}"></script>
 <!-- Index js -->
 <script src="{{ URL::to('assets/js/index.js') }}"></script>
+
+@section('footer_js')
+@show
 </body>
 </html>

@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'StudentController@index')->name('home.student');
+Route::get('student/registration', 'StudentController@registerStudent')->name('register.student');
+Route::post('student/create', 'StudentController@create')->name('create.student');
 
 // EXAM ROUTE
 Route::get('exam', 'ExamController@index');

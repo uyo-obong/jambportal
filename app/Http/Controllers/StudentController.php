@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Institution;
+use App\Olevel;
 use App\Student;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class StudentController extends Controller
@@ -20,100 +23,101 @@ class StudentController extends Controller
         return view('profile.getProfile');
     }
 
+    public function registerStudent()
+    {
+        return view('students.registerStudent');
+    }
+
     public function create(Request $request)
     {
-        $student = new Student;
-
-        $student-> first_name = $request->input('first_name');
-
-        $student-> middle_name = $request->input('middle_name');
-
-        $student-> last_name = $request->input('last_name');
-
-        $student-> age = $request->input('age');
-
-        $student-> phone = $request->input('phone');
-
-        $student-> email = $request->input('email');
-
-        $student-> state = $request->input('state');
-
-        $student-> zones_id = $request->input('zones_id');
-
-        $student-> local_government = $request->input('local_government');
-
-        $student-> country = $request->input('country');
-
-        $student-> address = $request->input('address');
-
-        $student->save();
-        return redirect()->back()->with('status','created successfully.');
-    }
-
-
-    public function edit($id)
-    {
-        $student = Student::where('id', $id)->first();
-        // return view('', compact('student'));
-
-    }
-
-
-    public function update($id,Request $request)
-    {
-
-        // VALIDATION FOR UPDATE METHOD
-
-        $this->validate(request(),[
-            'first_name' => 'required',
-            'middle_name' => 'required',
-            'last_name' => 'required',
-            'age' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'state' => 'required',
-            'zones_id' => 'required',
-            'local_government' => 'required',
-            'country' => 'required',
-            'address' => 'required'
+        // dd($request->all());
+        $createUser = User::whereId(Auth::user()->id)->update([
+            'first_name' => $request['first_name'],
+            'email' => $request['email'],
+            'age' => $request['age'],
         ]);
 
-        //  UPDATE METHOD
-        $student = Student::where('id',$id)->first();
+        if ($createUser) {
+            $student = Student::updateOrCreate(
+                $this->createStudent($request)
+            );
+        }
 
-        $student-> first_name = $request->input('first_name');
+        if ($student) {
+            $olevel = Olevel::updateOrCreate(
+                $this->createOlevel($request)
+            );
+        }
 
-        $student-> middle_name = $request->input('middle_name');
-
-        $student-> last_name = $request->input('last_name');
-
-        $student-> age = $request->input('age');
-
-        $student-> phone = $request->input('phone');
-
-        $student-> email = $request->input('email');
-
-        $student-> state = $request->input('state');
-
-        $student-> zones_id = $request->input('zones_id');
-
-        $student-> local_government = $request->input('local_government');
-
-        $student-> country = $request->input('country');
-
-        $student-> address = $request->input('address');
-
-        $student->save();
-        return redirect()->back()->with('status','updated successfully.');
-    }
+        if ($olevel) {
+         Institution::updateOrCreate(
+            $this->createInstitution($request)
+        );
+     }
 
 
-    public function delete($id)
-    {
-        $student = Student::where('id', $id)->first();
-        $student->delete();
-        return redirect()->back()->with('status','successfully deleted.');
-    }
+     return redirect()->back()->with('status','created successfully.');
+ }
+
+ protected function createInstitution($request)
+ {
+    $institution = [
+        'institution_name' => $request['institution_name'],
+        'department' => $request['department'],
+        'school_id' => 1,
+        'user_id' => Auth::user()->id,
+    ];
+
+    return $institution;
+}
+
+protected function createOlevel($request)
+{
+    $olevel = [
+        'center_number' => $request['center_number'],
+        'reg_no' => $request['reg_no'],
+        'exam_year' => $request['exam_year'],
+        'type_id' => 1,
+        'user_id' => Auth::user()->id,
+        'sub1'  => $request['sub1'],
+        'sub2'  => $request['sub2'],
+        'sub3'  => $request['sub3'],
+        'sub4'  => $request['sub4'],
+        'sub5'  => $request['sub5'],
+        'grad1'  => $request['grad1'],
+        'grad2'  => $request['grad2'],
+        'grad3'  => $request['grad3'],
+        'grad4'  => $request['grad4'],
+        'grad5'  => $request['grad5'],
+    ];
+
+    return $olevel;
+}
+
+protected function createStudent($request)
+{
+    $student = [
+        'middle_name' => $request['middle_name'],
+        'last_name' => $request['last_name'],
+        'phone' => $request['phone_number'],
+        'address' => $request['address'],
+        'city' => $request['city'],
+        'state' => $request['state'],
+        'country' => $request['country'],
+        'zone_id' => $request['zone'],
+        'user_id' => Auth::user()->id
+    ];
+
+    return $student;
+}
+
+
+public function delete($id)
+{
+    $student = Student::where('id', $id)->first();
+    $student->delete();
+    return redirect()->back()->with('status','successfully deleted.');
+}
 }
 
 

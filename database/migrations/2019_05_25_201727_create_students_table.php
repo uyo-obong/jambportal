@@ -26,7 +26,7 @@ class CreateStudentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('zone_id')->unsigned();
 
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamps();
 
         });
     }

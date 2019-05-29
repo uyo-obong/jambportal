@@ -1,405 +1,297 @@
 @extends('layouts.app')
 
+@section('header_css')
+<!-- jquery steps CSS-->
+<link rel="stylesheet" type="text/css" href="{{ URL::to('assets/plugins/jquery.steps/css/jquery.steps.css') }}">
+<!--Select Plugins-->
+<link href="{{ URL::to('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+<!-- Dropzone css -->
+<link href="{{ URL::to('assets/plugins/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css">
+@stop
+
 @section('content')
 <div class="clearfix"></div>
-	
-  <div class="content-wrapper">
-    <div class="container-fluid">
 
-      <!--Start Dashboard Content-->
-	  
-      <div class="row mt-3">
-        <div class="col-12 col-lg-6 col-xl-3">
-          <div class="card bg-pattern-primary">
-            <div class="card-body">
-              <div class="media">
-              <div class="media-body text-left">
-                <h4 class="text-white">4500</h4>
-                <span class="text-white">Total Orders</span>
-              </div>
-              <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
-                <i class="icon-basket-loaded text-white"></i></div>
-             </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3">
-          <div class="card bg-pattern-danger">
-            <div class="card-body">
-              <div class="media">
-               <div class="media-body text-left">
-                <h4 class="text-white">7850</h4>
-                <span class="text-white">Total Expenses</span>
-              </div>
-               <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
-                <i class="icon-wallet text-white"></i></div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3">
-          <div class="card bg-pattern-success">
-            <div class="card-body">
-              <div class="media">
-              <div class="media-body text-left">
-                <h4 class="text-white">87.5%</h4>
-                <span class="text-white">Total Revenue</span>
-              </div>
-              <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
-                <i class="icon-pie-chart text-white"></i></div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3">
-          <div class="card bg-pattern-warning">
-            <div class="card-body">
-              <div class="media">
-              <div class="media-body text-left">
-                <h4 class="text-white">8400</h4>
-                <span class="text-white">New Users</span>
-              </div>
-              <div class="align-self-center w-circle-icon rounded-circle bg-contrast">
-                <i class="icon-user text-white"></i></div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div><!--End Row-->
-		  
-		  
-      <div class="row">
-        <div class="col-12 col-lg-8 col-xl-8">
-          <div class="card gradient-violet">
-    		   <div class="card-header bg-transparent text-white border-light">
-                    Product Sales 
-    				<div class="card-action">
-    				 <div class="dropdown">
-    				 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-    				  <i class="icon-options text-white"></i>
-    				 </a>
-    				    <div class="dropdown-menu dropdown-menu-right">
-    						<a class="dropdown-item" href="javascript:void();">Action</a>
-    						<a class="dropdown-item" href="javascript:void();">Another action</a>
-    						<a class="dropdown-item" href="javascript:void();">Something else here</a>
-    						<div class="dropdown-divider"></div>
-    						<a class="dropdown-item" href="javascript:void();">Separated link</a>
-    					 </div>
-    				  </div>
-                     </div>
-    				</div>
-                 <div class="card-body">
-                   <canvas id="dashboard-chart-1"></canvas>
-                 </div>
-          </div>
-        </div>
-		
-        <div class="col-12 col-lg-4 col-xl-4">
-          <div class="card gradient-titanium">
-		   <div class="card-header bg-transparent text-white border-light">
-                Trending Products
-				<div class="card-action">
-				 <div class="dropdown">
-				 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-				  <i class="icon-options text-white"></i>
-				 </a>
-				    <div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="javascript:void();">Action</a>
-						<a class="dropdown-item" href="javascript:void();">Another action</a>
-						<a class="dropdown-item" href="javascript:void();">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="javascript:void();">Separated link</a>
-					 </div>
-				  </div>
-                 </div>
-              </div>
-             <div class="card-body">
-                <canvas id="dashboard-chart-2" height="335"></canvas>
-            </div>
-          </div>
-        </div>
-		
-      </div><!--End Row-->
-
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card bg-primary">
-		  <div class="card-header bg-transparent text-white border-0">
-                Recent Orders
-				<div class="card-action">
-				 <div class="dropdown">
-				 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-				  <i class="icon-options text-white"></i>
-				 </a>
-				    <div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="javascript:void();">Action</a>
-						<a class="dropdown-item" href="javascript:void();">Another action</a>
-						<a class="dropdown-item" href="javascript:void();">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="javascript:void();">Separated link</a>
-					 </div>
-				  </div>
-                 </div>
-                </div>
-               <div class="table-responsive">
-                 <table class="table align-items-center table-flush table-primary">
-                  <thead>
-                   <tr>
-                     <th>Product</th>
-                     <th>Photo</th>
-                     <th>Product ID</th>
-                     <th>Status</th>
-                     <th>Amount</th>
-                     <th>Date</th>
-                     <th>Shipping</th>
-                   </tr>
-                   </thead>
-                   <tr>
-                    <td>Iphone 5</td>
-                    <td><img src="assets/images/products/01.png" class="product-img" alt="product img"></td>
-                    <td>#9405822</td>
-                    <td><span class="badge gradient-quepal text-white shadow">Paid</span></td>
-                    <td>$ 1250.00</td>
-                    <td>03 Aug 2017</td>
-					<td><div class="progress shadow" style="height: 6px;">
-                          <div class="progress-bar gradient-quepal" role="progressbar" style="width: 100%"></div>
-                        </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>Earphone GL</td>
-                    <td><img src="assets/images/products/02.png" class="product-img" alt="product img"></td>
-                    <td>#9405820</td>
-                    <td><span class="badge gradient-blooker text-white shadow">Pending</span></td>
-                    <td>$ 1500.00</td>
-                    <td>03 Aug 2017</td>
-					<td><div class="progress shadow" style="height: 6px;">
-                          <div class="progress-bar gradient-blooker" role="progressbar" style="width: 60%"></div>
-                        </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>HD Hand Camera</td>
-                    <td><img src="assets/images/products/03.png" class="product-img" alt="product img"></td>
-                    <td>#9405830</td>
-                    <td><span class="badge gradient-bloody text-white shadow">Failed</span></td>
-                    <td>$ 1400.00</td>
-                    <td>03 Aug 2017</td>
-					<td><div class="progress shadow" style="height: 6px;">
-                          <div class="progress-bar gradient-bloody" role="progressbar" style="width: 70%"></div>
-                        </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>Clasic Shoes</td>
-                    <td><img src="assets/images/products/04.png" class="product-img" alt="product img"></td>
-                    <td>#9405825</td>
-                    <td><span class="badge gradient-quepal text-white shadow">Paid</span></td>
-                    <td>$ 1200.00</td>
-                    <td>03 Aug 2017</td>
-					<td><div class="progress shadow" style="height: 6px;">
-                          <div class="progress-bar gradient-quepal" role="progressbar" style="width: 100%"></div>
-                        </div></td>
-                   </tr>
-
-                   <tr>
-                    <td>Hand Watch</td>
-                    <td><img src="assets/images/products/05.png" class="product-img" alt="product img"></td>
-                    <td>#9405840</td>
-                    <td><span class="badge gradient-bloody text-white shadow">Failed</span></td>
-                    <td>$ 1800.00</td>
-                    <td>03 Aug 2017</td>
-					<td><div class="progress shadow" style="height: 6px;">
-                          <div class="progress-bar gradient-bloody" role="progressbar" style="width: 40%"></div>
-                        </div></td>
-                   </tr>
-
-                 </table>
-               </div>
-          </div>
-        </div>
-      </div><!--End Row-->
-
-      <div class="row">
-         <div class="col-12 col-lg-7 col-xl-8">
-           <div class="card gradient-blooker">
-		     <div class="card-header bg-transparent text-white border-light">Top Selling Country
-				 <div class="card-action">
-				 <div class="dropdown">
-				 <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-				  <i class="icon-options text-white"></i>
-				 </a>
-				    <div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="javascript:void();">Action</a>
-						<a class="dropdown-item" href="javascript:void();">Another action</a>
-						<a class="dropdown-item" href="javascript:void();">Something else here</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="javascript:void();">Separated link</a>
-					 </div>
-				  </div>
-                 </div>
-				</div>
-              <div class="card-body">
-                 <div class="row">
-                   <div class="col-lg-7 col-xl-8 border-right">
-                     <div id="dashboard-map" style="height: 275px"></div>
-                   </div>
-                   <div class="col-lg-5 col-xl-4">
-
-                     <p class="text-white"><i class="flag-icon flag-icon-us mr-1"></i> USA <span class="float-right">70%</span></p>
-                     <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 70%"></div>
-                      </div>
-
-                      <p class="mt-3 text-white"><i class="flag-icon flag-icon-ca mr-1"></i> Canada <span class="float-right">65%</span></p>
-                      <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 65%"></div>
-                      </div>
-
-                      <p class="mt-3 text-white"><i class="flag-icon flag-icon-gb mr-1"></i> England <span class="float-right">60%</span></p>
-                      <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 60%"></div>
-                        </div>
-
-                      <p class="mt-3 text-white"><i class="flag-icon flag-icon-au mr-1"></i> Australia <span class="float-right">55%</span></p>
-                      <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-dark progress-bar-striped" role="progressbar" style="width: 55%"></div>
-                        </div>
-
-                      <p class="mt-3 text-white"><i class="flag-icon flag-icon-in mr-1"></i> India <span class="float-right">50%</span></p>
-                      <div class="progress" style="height: 7px;">
-                          <div class="progress-bar bg-info progress-bar-striped" role="progressbar" style="width: 50%"></div>
-                        </div>
-
-                   </div>
-                 </div>
-              </div>
-            </div>
-         </div>
-
-         <div class="col-12 col-lg-5 col-xl-4">
-            <div class="card gradient-shifter">
-            <div class="card-body">
-              <div class="media">
-              <div class="media-body text-left">
-                <h4 class="text-white">45,85,240</h4>
-                <span class="text-white">Total Likes</span>
-              </div>
-			  <div class="align-self-center w-circle-icon rounded bg-contrast">
-                <i class="icon-like text-white"></i></div>
-            </div>
-            </div>
-          </div>
-          <div class="card gradient-meridian">
-            <div class="card-body">
-              <div class="media">
-			  <div class="media-body text-left">
-                <h4 class="text-white">78,50,325</h4>
-                <span class="text-white">Comments</span>
-              </div>
-               <div class="align-self-center w-circle-icon rounded bg-contrast">
-                <i class="icon-speech text-white"></i></div>
-            </div>
-            </div>
-          </div>
-          <div class="card gradient-ibiza">
-            <div class="card-body">
-              <div class="media">
-              <div class="media-body text-left">
-                <h4 class="text-white">25,40,354</h4>
-                <span class="text-white">Total Shares</span>
-              </div>
-			  <div class="align-self-center w-circle-icon rounded bg-contrast">
-                <i class="icon-share text-white"></i></div>
-            </div>
-            </div>
-          </div>
-
-         </div>
-      </div><!--End Row-->
-
-      <div class="row">
-        <div class="col-12 col-lg-4 col-xl-4">
-          <div class="card bg-pattern-dark">
-            <div class="card-header bg-transparent text-white border-light">
-              Last Week Revenue
-            <div class="card-action">
-             <div class="dropdown">
-             <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-              <i class="icon-options text-white"></i>
-             </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="javascript:void();">Action</a>
-                <a class="dropdown-item" href="javascript:void();">Another action</a>
-                <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="javascript:void();">Separated link</a>
-               </div>
-              </div>
-             </div>
-            </div>
-            <div class="card-body">
-               <canvas id="dashboard-chart-3" height="240"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4 col-xl-4">
-            <div class="card bg-pattern-dark">
-              <div class="card-header bg-transparent text-white border-light">
-                Orders Summary
-              <div class="card-action">
-               <div class="dropdown">
-               <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                <i class="icon-options text-white"></i>
-               </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="javascript:void();">Action</a>
-                  <a class="dropdown-item" href="javascript:void();">Another action</a>
-                  <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                 </div>
-                </div>
-               </div>
-              </div>
-              <div class="card-body">
-                <canvas id="dashboard-chart-4" height="240"></canvas>
-              </div>
-            </div>
-        </div>
-		<div class="col-12 col-lg-4 col-xl-4">
-            <div class="card bg-pattern-dark">
-              <div class="card-header bg-transparent text-white border-light">
-                Top Selling Categories
-              <div class="card-action">
-               <div class="dropdown">
-               <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
-                <i class="icon-options text-white"></i>
-               </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="javascript:void();">Action</a>
-                  <a class="dropdown-item" href="javascript:void();">Another action</a>
-                  <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void();">Separated link</a>
-                 </div>
-                </div>
-               </div>
-              </div>
-              <div class="card-body">
-                <canvas id="dashboard-chart-5" height="240"></canvas>
-              </div>
-            </div>
-        </div>
-      </div><!--End Row-->
-	  
-       <!--End Dashboard Content-->
-
+<div class="content-wrapper">
+  <div class="container-fluid">
+   <!-- Breadcrumb-->
+   <div class="row pt-2 pb-2">
+    <div class="col-sm">
+      <h4 class="page-title">Form Wizard</h4>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javaScript:void();">Rocker</a></li>
+        <li class="breadcrumb-item"><a href="javaScript:void();">Forms</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Form Wizard</li>
+      </ol>
     </div>
-    <!-- End container-fluid-->
-    
-    </div><!--End content-wrapper-->
-   <!--Start Back To Top Button-->
-    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
-    <!--End Back To Top Button-->
+    <div class="col-sm-3">
+     <div class="btn-group float-sm-right">
+      <button type="button" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-cog mr-1"></i> Setting</button>
+      <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <div class="dropdown-menu">
+        <a href="javaScript:void();" class="dropdown-item">Action</a>
+        <a href="javaScript:void();" class="dropdown-item">Another action</a>
+        <a href="javaScript:void();" class="dropdown-item">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a href="javaScript:void();" class="dropdown-item">Separated link</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Breadcrumb-->
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header text-uppercase">
+        Validation Form Wizard
+      </div>
+      <div class="card-body">
+       <form id="wizard-validation-form" method="POST" action="{{ route('create.student') }}">
+        {{ csrf_field() }}
+        <div>
+          <h3>Step 1</h3>
+          <section>
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="lastName2"> Last Name *</label>
+                  <input class="required form-control" name="last_name" type="text">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="firstName2"> First Name *</label>
+                  <input id="firstName2" name="first_name" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="middleName2"> Middle Name *</label>
+                  <input id="middleName2" name="middle_name" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="number2"> Phone Number *</label>
+                  <input id="number2" name="phone_number" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="age2"> Age *</label>
+                  <input id="age2" name="age" value="{{ auth()->user()->age }}" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email2"> Email Address *</label>
+                  <input id="email2" name="email" value="{{ auth()->user()->email }}" type="text" class="required email form-control">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="address"> Address *</label>
+                  <input id="address" name="address" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="city"> City *</label>
+                  <input id="city" name="city" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="state2"> State *</label>
+                  <input id="state2" name="state" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="country2"> Country *</label>
+                  <input id="country2" name="country" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="zone2"> Zone *</label>
+                  <input id="zone2" name="zone" value="2" type="text" class="required form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-12 control-label">(*) Mandatory</label>
+              </div>
+            </div>
+          </section>
+          <h3>Step 2</h3>
+          <section>
+            <div class="row">
+
+              <div class="col-md-6">
+               <h4>OLevel Result</h4>
+               <div class="form-group">
+                <label for="examtype">Exam Type </label>
+                <select name="exam_type" value="1" class="form-control single-select">
+                  <option>Waec</option>
+                  <option>Neco</option>
+                </select>
+              </div>
+            </div>
+
+            {{-- Result combination --}}
+            <div class="col-md-6">
+             <h4>OLevel Combination</h4>
+             <div class="form-group">
+              <label for="examtype2">Exam Type </label>
+              <select class="form-control single-select">
+                <option>Waec</option>
+                <option>Neco</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="cnumber2"> Center Number *</label>
+              <input id="cnumber2" name="center_number" type="text" class="required form-control">
+            </div>
+          </div>
+
+          {{-- Olevel combination --}}
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="cnumber2"> Center Number</label>
+              <input id="cnumber2" name="cnumber2" type="text" class=" form-control">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Rnumber2"> Registration Number *</label>
+              <input id="Rnumber2" name="reg_no" type="text" class="required form-control">
+            </div>
+          </div>
+
+          {{-- Olevel Combination --}}
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="Rnumber2"> Registration Number</label>
+              <input id="Rnumber2" name="rnumber" type="text" class=" form-control">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email2">  Exam Year *</label>
+              <input id="email2" name="exam_year" type="text" class="required form-control">
+            </div>
+          </div>
+
+          {{-- Olevel Combination--}}
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="examyear2">Exam Year</label>
+              <input id="examyear2" name="examyear" type="text" class=" form-control">
+            </div>
+          </div>
+
+          
+          @include('students._subjectforms')
+          
+
+          {{-- Result Combination --}}
+          @include('students._subjectforms2')
+
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-12 control-label">(*) Mandatory</label>
+        </div>
+      </section>
+      <h3>Step 3</h3>
+      <section>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="Institution"> Institution *</label>
+              <input id="Institution" name="institution_name" type="text" class="required form-control">
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="department"> Department *</label>
+              <input id="department" name="department" type="text" class="required form-control">
+            </div>
+          </div>
+
+          <div class="col-md-12">
+           <div class="form-group">
+            <label for="examtype2"> School </label>
+            <select name="school" value="1" class="form-control single-select">
+              <option>Faculty Of Science</option>
+              <option>Faculty Of Engineering</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <h3>Step Final</h3>
+    <section class="dropzone" id="dropzone">
+      <div class="form-group">
+        <div class=" col-md-12" >
+          {{-- <div class="dropzone" > --}}
+           {{-- <form action="#" class="dropzone" id="dropzone"> --}}
+            <div class="fallback">
+              <input name="file" type="file" multiple="multiple">
+            </div>
+          {{--  </form> --}}
+
+        </div>
+      </div>
+      <button  type="submit" class="btn btn-primary">Submit</button>
+    </section>
+  </div>
+</form>
+</div>
+</div>
+</div>
+</div><!-- End Row-->
+
+</div>
+<!-- End container-fluid-->
+
+</div><!--End content-wrapper-->
+<!--Start Back To Top Button-->
+<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+<!--End Back To Top Button-->
+@stop
+@section('footer_js')
+<!--Form Wizard-->
+<script src="{{ URL::to('assets/plugins/jquery.steps/js/jquery.steps.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ URL::to('assets/plugins/jquery-validation/js/jquery.validate.min.js') }}"></script>
+<!--wizard initialization-->
+<script src="{{ URL::to('assets/plugins/jquery.steps/js/jquery.wizard-init.js') }}" type="text/javascript"></script>
+<!--Select Plugins Js-->
+<script src="{{ URL::to('assets/plugins/select2/js/select2.min.js') }}"></script>
+<!-- Dropzone JS  -->
+<script src="{{ URL::to('assets/plugins/dropzone/js/dropzone.js') }}"></script>
 @stop

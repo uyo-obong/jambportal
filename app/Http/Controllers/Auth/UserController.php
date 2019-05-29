@@ -47,6 +47,6 @@ class UserController extends Controller
             'role' => 'student',
             'password' => Hash::make($data['password']),
         ]);
-         return redirect(route('/'));
+         return redirect(route('register.student'));
     }
 }
