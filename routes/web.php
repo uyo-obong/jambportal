@@ -42,6 +42,13 @@ Route::get('school/edit/{id}', 'SchoolController@edit');
 Route::put('school/update/{id}', 'SchoolController@update');
 Route::delete('school/delete/{id}', 'SchoolController@delete');
 
+// SUBJECT ROUTE
+Route::get('/subject', 'SubjectController@index');
+Route::post('/subject/post', 'SubjectController@create');
+Route::get('/subject/edit/{id}', 'SubjectController@edit');
+Route::put('school/update/{id}', 'SubjectController@update');
+Route::delete('school/delete/{id}', 'SubjectController@delete');
+
 // ZONE ROUTE
 Route::get('zone', 'ZoneController@index');
 Route::post('zone/post', 'ZoneController@create');
