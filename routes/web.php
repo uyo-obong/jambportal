@@ -24,11 +24,18 @@ Route::put('exam/update/{id}', 'Exam@update');
 Route::delete('exam/delete/{id}', 'ExamController@delete');
 
 // INSTITUTION ROUTE
-Route::get('institutions', 'InstitutionController@index');
-Route::post('institution/post', 'InstitutionController@create');
-Route::get('institution/edit/{id}', 'InstitutionController@edit');
-Route::put('institution/update/{id}', 'InstitutionController@update');
-Route::delete('institution/delete/{id}', 'InstitutionController@delete');
+Route::get('save', 'InstitutionController@index');
+Route::post('save/post', 'InstitutionController@create');
+Route::get('save/edit/{id}', 'InstitutionController@edit');
+Route::put('save/update/{id}', 'InstitutionController@update');
+Route::delete('save/delete/{id}', 'InstitutionController@delete');
+
+// ALL INSTITUTION ROUTE
+Route::get('institutions', 'AllInstitutionController@index')->name('all.institutions');
+Route::post('institution/post', 'AllInstitutionController@create')->name('post.all');
+Route::get('institution/edit/{id}', 'AllInstitutionController@edit');
+Route::put('institution/update/{id}', 'AllInstitutionController@update');
+Route::delete('institution/delete/{id}', 'AllInstitutionController@delete');
 
 // OLEVEL ROUTE
 Route::get('olevel', 'OlevelController@index');
@@ -45,11 +52,11 @@ Route::put('school/update/{id}', 'SchoolController@update');
 Route::delete('school/delete/{id}', 'SchoolController@delete');
 
 // SUBJECT ROUTE
-Route::get('/subject', 'SubjectController@index');
-Route::post('/subject/post', 'SubjectController@create');
-Route::get('/subject/edit/{id}', 'SubjectController@edit');
-Route::put('school/update/{id}', 'SubjectController@update');
-Route::delete('school/delete/{id}', 'SubjectController@delete');
+Route::get('subjects', 'SubjectController@index');
+Route::post('subject/post', 'SubjectController@create');
+Route::get('subject/edit/{id}', 'SubjectController@edit');
+Route::put('subjects/update/{id}', 'SubjectController@update');
+Route::delete('subjects/delete/{id}', 'SubjectController@delete');
 
 // ZONE ROUTE
 Route::get('zone', 'ZoneController@index');

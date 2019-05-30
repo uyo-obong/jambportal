@@ -11,7 +11,7 @@ class InstitutionController extends Controller
     public function index()
     {
 
-        return view('')->with('institution', Institution::all());
+        return view('');
     }
 
     public function create(Request $request)

@@ -29,8 +29,8 @@
     </a>
   </li>
 
-  <li>
-    <a href="calendar.html" class="waves-effect">
+  <li class="{{ request()->is('institutions') ? 'active' : '' }}">
+    <a href="{{ route('all.institutions') }}" class="waves-effect">
      <i class="icon-calendar"></i> <span>Insitutions</span>
    </a>
  </li>

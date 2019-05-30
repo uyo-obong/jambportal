@@ -10,6 +10,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+    <!--Data Tables -->
+    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Vector CSS -->
     <link href="{{ URL::to('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
     <!-- simplebar CSS-->
@@ -24,6 +27,8 @@
     <link href="{{ URL::to('assets/css/sidebar-menu.css') }}" rel="stylesheet"/>
     <!-- Custom Style-->
     <link href="{{ URL::to('assets/css/app-style.css') }}" rel="stylesheet"/>
+    <!--Data Tables -->
+    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     
     @section('header_css')
     @show
@@ -94,6 +99,36 @@
 <script src="{{ URL::to('assets/js/popper.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
 
+<!--Data Tables js-->
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/jszip.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/pdfmake.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/vfs_fonts.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/buttons.html5.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/buttons.print.min.js') }}"></script>
+<script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+      //Default data table
+      $('#default-datatable').DataTable();
+
+
+      var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
+    } );
+
+      table.buttons().container()
+      .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+      
+  } );
+
+</script>
+
 <!-- simplebar js -->
 <script src="{{ URL::to('assets/plugins/simplebar/js/simplebar.js') }}"></script>
 <!-- waves effect js -->
@@ -110,6 +145,8 @@
 <script src="{{ URL::to('assets/plugins/Chart.js/Chart.min.js') }}"></script>
 <!-- Index js -->
 <script src="{{ URL::to('assets/js/index.js') }}"></script>
+
+
 
 @section('footer_js')
 @show
