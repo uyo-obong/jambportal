@@ -8,7 +8,7 @@ class Student extends Model
 {
 	protected $fillable = [
 		'middle_name', 'last_name', 'phone', 'address', 
-		'city', 'state', 'country', 'zone_id', 'user_id'
+		'city', 'state', 'country', 'zone', 'user_id'
 	];
 
     public function user()

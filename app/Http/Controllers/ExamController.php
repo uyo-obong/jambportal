@@ -4,40 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Exam;
+use App\Type;
 
 class ExamController extends Controller
 {
 
     public function index()
     {
-
-        return view('')->with('exam', Exam::all());
+        $Type = Type::all();
+        return view('Type.type');
     }
 
     public function create(Request $request)
     {
-        $exam = new Exam;
+        $Type = new Type;
+        $Type->name = $request->input('name');
+        $Type->address = $request->input('address');
+        $Type->city = $request->input('city');
+        $Type->local_government = $request->input('local_government');
+        $Type->state = $request->input('state');
 
-        $exam-> name = $request->input('name');
-
-        $exam-> address = $request->input('address');
-
-        $exam-> city = $request->input('city');
-
-        $exam-> local_government = $request->input('local_government');
-
-        $exam-> state = $request->input('state');
-
-        $exam->save();
+        $Type->save();
         return redirect()->back()->with('status','created successfully.');
     }
 
 
     public function edit($id)
     {
-        $exam = Exam::where('id', $id)->first();
-        return view('', compact('exam'));
+        $Type = Type::where('id', $id)->first();
+        return view('', compact('Type'));
 
     }
 
@@ -56,27 +51,27 @@ class ExamController extends Controller
         ]);
 
         //  UPDATE METHOD
-        $exam = Exam::where('id',$id)->first();
+        $Type = Type::where('id',$id)->first();
 
-        $exam-> name = $request->input('name');
+        $Type-> name = $request->input('name');
 
-        $exam-> address = $request->input('address');
+        $Type-> address = $request->input('address');
 
-        $exam-> city = $request->input('city');
+        $Type-> city = $request->input('city');
 
-        $exam-> local_government = $request->input('local_government');
+        $Type-> local_government = $request->input('local_government');
 
-        $exam-> state = $request->input('state');
+        $Type-> state = $request->input('state');
 
-        $exam->save();
+        $Type->save();
         return redirect()->back()->with('status','updated successfully.');
     }
 
 
     public function delete($id)
     {
-        $exam = Exam::where('id', $id)->first();
-        $exam->delete();
+        $Type = Type::where('id', $id)->first();
+        $Type->delete();
         return redirect()->back()->with('status','successfully deleted.');
     }
 

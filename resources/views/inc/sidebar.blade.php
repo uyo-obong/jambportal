@@ -25,42 +25,54 @@
   </li> --}}
   <li>
     <a href="calendar.html" class="waves-effect">
-      <i class="icon-calendar"></i> <span>Profile</span>
+      <i class="icon-user icons"></i> <span>Profile</span>
     </a>
   </li>
 
   <li class="{{ request()->is('institutions') ? 'active' : '' }}">
     <a href="{{ route('all.institutions') }}" class="waves-effect">
-     <i class="icon-calendar"></i> <span>Insitutions</span>
+     <i class="icon-organization"></i> <span>Insitutions</span>
    </a>
  </li>
 
- <li>
-  <a href="calendar.html" class="waves-effect">
-   <i class="icon-calendar"></i> <span>Students</span>
+ <li class="{{ request()->is('schools') ? 'active' : '' }}">
+  <a href="{{ route('index.school') }}" class="waves-effect">
+   <i class="icon-loop"></i> <span>Faculties</span>
  </a>
 </li>
 
-<li>
-  <a href="calendar.html" class="waves-effect">
-   <i class="icon-calendar"></i> <span>Schools</span>
+<li class="{{ request()->is('departments') ? 'active' : '' }}">
+  <a href="{{ route('index.department') }}" class="waves-effect">
+   <i class="icon-note"></i> <span>Departments</span>
  </a>
 </li>
 
-<li>
-  <a href="calendar.html" class="waves-effect">
-   <i class="icon-calendar"></i> <span>Zones</span>
+ <li class="{{ request()->is('students') ? 'active' : '' }}">
+  <a href="{{ route('getall.student') }}" class="waves-effect">
+   <i class="icon-notebook"></i> <span>Students</span>
  </a>
 </li>
 
-<li>
+<li class="{{ request()->is('zones') ? 'active' : '' }}">
+  <a href="{{ route('index.zone') }}" class="waves-effect">
+   <i class="icon-location-pin"></i> <span>Zones</span>
+ </a>
+</li>
+
+<li class="{{ request()->is('types') ? 'active' : '' }}">
   <a href="javaScript:void();" class="waves-effect">
-   <i class="icon-briefcase"></i>
+   <i class="icon-folder-alt"></i>
    <span>Exams</span> <i class="fa fa-angle-left pull-right"></i>
  </a>
  <ul class="sidebar-submenu">
-  <li><a href="ui-typography.html"><i class="fa fa-circle-o"></i>Exam Center</a></li>
-  <li><a href="ui-typography.html"><i class="fa fa-circle-o"></i>Exam Type</a></li>
+  <li class="{{ request()->is('exams') ? 'active' : '' }}">
+    <a href="ui-typography.html"><i class="fa fa-circle-o"></i>Exam Center</a></li>
+  <li class="{{ request()->is('types') ? 'active' : '' }}">
+    <a href="{{ route('index.type') }}"><i class="fa fa-circle-o"></i>Exam Type</a></li>
+    <li class="{{ request()->is('subjects') ? 'active' : '' }}">
+    <a href="{{ route('index.subject') }}"><i class="fa fa-circle-o"></i>Subjects</a></li>
+    <li class="{{ request()->is('grades') ? 'active' : '' }}">
+    <a href="{{ route('index.grade') }}"><i class="fa fa-circle-o"></i>Grades</a></li>
 </ul>
 </li>
 

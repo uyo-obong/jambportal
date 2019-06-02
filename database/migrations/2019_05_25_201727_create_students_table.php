@@ -22,9 +22,9 @@ class CreateStudentsTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('country');
+            $table->string('zone');
 
             $table->integer('user_id')->unsigned();
-            $table->integer('zone_id')->unsigned();
 
             $table->timestamps();
 

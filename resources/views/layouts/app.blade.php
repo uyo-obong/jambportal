@@ -10,9 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
-    <!--Data Tables -->
-    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Vector CSS -->
     <link href="{{ URL::to('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
     <!-- simplebar CSS-->
@@ -29,6 +26,7 @@
     <link href="{{ URL::to('assets/css/app-style.css') }}" rel="stylesheet"/>
     <!--Data Tables -->
     <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::to('assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
     
     @section('header_css')
     @show
@@ -99,6 +97,23 @@
 <script src="{{ URL::to('assets/js/popper.min.js') }}"></script>
 <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
 
+
+<!--Sweet Alerts -->
+<script src="{{ URL::to('assets/plugins/alerts-boxes/js/sweetalert.min.js') }}"></script>
+<script src="assets/plugins/alerts-boxes/js/sweet-alert-script.js"></script>
+<!-- simplebar js -->
+<script src="{{ URL::to('assets/plugins/simplebar/js/simplebar.js') }}"></script>
+<!-- waves effect js -->
+<script src="{{ URL::to('assets/js/waves.js') }}"></script>
+<!-- sidebar-menu js -->
+<script src="{{ URL::to('assets/js/sidebar-menu.js') }}"></script>
+<!-- Custom scripts -->
+<script src="{{ URL::to('assets/js/app-script.js') }}"></script>
+
+<!-- Index js -->
+{{-- <script src="{{ URL::to('assets/js/index.js') }}"></script> --}}
+
+
 <!--Data Tables js-->
 <script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::to('assets/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -128,26 +143,6 @@
   } );
 
 </script>
-
-<!-- simplebar js -->
-<script src="{{ URL::to('assets/plugins/simplebar/js/simplebar.js') }}"></script>
-<!-- waves effect js -->
-<script src="{{ URL::to('assets/js/waves.js') }}"></script>
-<!-- sidebar-menu js -->
-<script src="{{ URL::to('assets/js/sidebar-menu.js') }}"></script>
-<!-- Custom scripts -->
-<script src="{{ URL::to('assets/js/app-script.js') }}"></script>
-
-<!-- Vector map JavaScript -->
-<script src="{{ URL::to('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-<script src="{{ URL::to('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-<!-- Chart js -->
-<script src="{{ URL::to('assets/plugins/Chart.js/Chart.min.js') }}"></script>
-<!-- Index js -->
-<script src="{{ URL::to('assets/js/index.js') }}"></script>
-
-
-
 @section('footer_js')
 @show
 </body>

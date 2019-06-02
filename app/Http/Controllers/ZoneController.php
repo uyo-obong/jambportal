@@ -10,18 +10,17 @@ class ZoneController extends Controller
 {
     public function index()
     {
-
-        return view('')->with('zone', Zone::all());
+        $zones = Zone::all();
+        return view('zone.create',compact('zones'));
     }
 
     public function create(Request $request)
     {
         $zone = new Zone;
-
-        $zone-> name = $request->input('name');
-
+        $zone-> name = $request->name;
         $zone->save();
-        return redirect()->back()->with('status','created successfully.');
+
+        return redirect()->back()->with('success','New Zone Has Been Added.');
     }
 
 

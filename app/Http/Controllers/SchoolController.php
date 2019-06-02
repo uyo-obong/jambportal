@@ -11,18 +11,17 @@ class SchoolController extends Controller
 
     public function index()
     {
-
-        return view('')->with('school', School::all());
+        $schools = School::all();
+        return view('school.create', compact('schools'));
     }
 
     public function create(Request $request)
     {
         $school = new School;
-
-        $school-> name = $request->input('name');
-
+        $school->name = $request->name;
         $school->save();
-        return redirect()->back()->with('status','created successfully.');
+
+        return redirect()->back()->with('success','Successfully Created.');
     }
 
 

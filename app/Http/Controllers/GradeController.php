@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Subject;
+use App\Grade;
 
-class SubjectController extends Controller
+class GradeController extends Controller
 {
     // MIDDLEWARE CHECK
     public function __construct()
@@ -16,8 +16,8 @@ class SubjectController extends Controller
 
     public function index()
     {
-        $subjects = Subject::all();
-        return view('subject.create', compact('subjects'));
+        $grades = Grade::all();
+        return view('grade.create', compact('grades'));
     }
 
     public function create(Request $request)
@@ -28,11 +28,11 @@ class SubjectController extends Controller
         ]);
 
         // CREATE CHECK
-        $subject = new Subject;
-        $subject->name = $request->name;
-        $subject->save();
+        $grade = new Grade;
+        $grade->name = $request->name;
+        $grade->save();
 
-        return redirect()->back()->with('success', 'New subject has been added.');
+        return redirect()->back()->with('success', 'New grade Point has been added.');
 
     }
 

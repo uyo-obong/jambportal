@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\AllInstitution;
+use App\Department;
+use App\Grade;
 use App\Institution;
 use App\Olevel;
+use App\School;
 use App\Student;
+use App\Subject;
+use App\Type;
 use App\User;
+use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,9 +30,31 @@ class StudentController extends Controller
         return view('profile.getProfile');
     }
 
+    public function getAll()
+    {
+        $students = User::all()->load('student', 'olevel', 'institution');
+        //dd($students);
+        return view('students.getAll',compact('students'));
+    }
+
     public function registerStudent()
     {
-        return view('students.registerStudent');
+        $types = Type::all();
+        $zones = Zone::all();
+        $grades = Grade::all();
+        $schools = School::all();
+        $subjects = Subject::all();
+        $departments = Department::all();
+        $institutions = AllInstitution::all();
+        return view('students.registerStudent', [
+            'types' => $types,
+            'zones' => $zones,
+            'grades' => $grades,
+            'schools' => $schools,
+            'subjects' => $subjects,
+            'departments' => $departments,
+            'institutions' => $institutions
+        ]);
     }
 
     public function create(Request $request)
@@ -37,18 +66,21 @@ class StudentController extends Controller
             'age' => $request['age'],
         ]);
 
+        // Get bio-data from user in other to register
         if ($createUser) {
             $student = Student::updateOrCreate(
                 $this->createStudent($request)
             );
         }
 
+        // Register 0 level subjects
         if ($student) {
             $olevel = Olevel::updateOrCreate(
                 $this->createOlevel($request)
             );
         }
 
+        // This will allow the user to choose institution
         if ($olevel) {
          Institution::updateOrCreate(
             $this->createInstitution($request)
@@ -64,7 +96,7 @@ class StudentController extends Controller
     $institution = [
         'institution_name' => $request['institution_name'],
         'department' => $request['department'],
-        'school_id' => 1,
+        'school' => $request['school'],
         'user_id' => Auth::user()->id,
     ];
 
@@ -77,7 +109,7 @@ protected function createOlevel($request)
         'center_number' => $request['center_number'],
         'reg_no' => $request['reg_no'],
         'exam_year' => $request['exam_year'],
-        'type_id' => 1,
+        'type' =>  $request['exam_type'],
         'user_id' => Auth::user()->id,
         'sub1'  => $request['sub1'],
         'sub2'  => $request['sub2'],
@@ -104,7 +136,7 @@ protected function createStudent($request)
         'city' => $request['city'],
         'state' => $request['state'],
         'country' => $request['country'],
-        'zone_id' => $request['zone'],
+        'zone' => $request['zone'],
         'user_id' => Auth::user()->id
     ];
 

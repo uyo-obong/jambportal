@@ -13,12 +13,20 @@
 
 
 Route::get('/', 'StudentController@index')->name('home.student');
+Route::get('students', 'StudentController@getAll')->name('getall.student');
 Route::get('student/registration', 'StudentController@registerStudent')->name('register.student');
 Route::post('student/create', 'StudentController@create')->name('create.student');
 
+// TYPE ROUTE
+Route::get('types', 'TypeController@index')->name('index.type');
+Route::post('type/post', 'TypeController@create')->name('post.type');
+Route::get('type/edit/{id}', 'TypeController@edit');
+Route::put('type/update/{id}', 'Type@update');
+Route::delete('type/delete/{id}', 'TypeController@delete');
+
 // EXAM ROUTE
-Route::get('exam', 'ExamController@index');
-Route::post('exam/post', 'ExanController@create');
+Route::get('exam', 'ExamController@index')->name('index.exam');
+Route::post('exam/post', 'ExamController@create')->name('post.exam');
 Route::get('exam/edit/{id}', 'ExamController@edit');
 Route::put('exam/update/{id}', 'Exam@update');
 Route::delete('exam/delete/{id}', 'ExamController@delete');
@@ -45,22 +53,36 @@ Route::put('olevel/update/{id}', 'OlevelController@update');
 Route::delete('olevel/delete/{id}', 'OlevelController@delete');
 
 // SCHOOL ROUTE
-Route::get('school', 'SchoolController@index');
-Route::post('school/post', 'SchoolController@create');
+Route::get('schools', 'SchoolController@index')->name('index.school');
+Route::post('school/post', 'SchoolController@create')->name('post.school');
 Route::get('school/edit/{id}', 'SchoolController@edit');
 Route::put('school/update/{id}', 'SchoolController@update');
 Route::delete('school/delete/{id}', 'SchoolController@delete');
 
+// DEPARMENT ROUTE
+Route::get('departments', 'DepartmentController@index')->name('index.department');
+Route::post('department/post', 'DepartmentController@create')->name('post.department');
+Route::get('department/edit/{id}', 'DepartmentController@edit');
+Route::put('department/update/{id}', 'DepartmentController@update');
+Route::delete('department/delete/{id}', 'DepartmentController@delete');
+
 // SUBJECT ROUTE
-Route::get('subjects', 'SubjectController@index');
-Route::post('subject/post', 'SubjectController@create');
+Route::get('subjects', 'SubjectController@index')->name('index.subject');
+Route::post('subject/post', 'SubjectController@create')->name('post.subject');
 Route::get('subject/edit/{id}', 'SubjectController@edit');
-Route::put('subjects/update/{id}', 'SubjectController@update');
-Route::delete('subjects/delete/{id}', 'SubjectController@delete');
+Route::put('subject/update/{id}', 'SubjectController@update');
+Route::delete('subject/delete/{id}', 'SubjectController@delete');
+
+// GRADE ROUTE
+Route::get('grades', 'GradeController@index')->name('index.grade');
+Route::post('grade/post', 'GradeController@create')->name('post.grade');
+Route::get('grade/edit/{id}', 'GradeController@edit');
+Route::put('grade/update/{id}', 'GradeController@update');
+Route::delete('grade/delete/{id}', 'GradeController@delete');
 
 // ZONE ROUTE
-Route::get('zone', 'ZoneController@index');
-Route::post('zone/post', 'ZoneController@create');
+Route::get('zones', 'ZoneController@index')->name('index.zone');
+Route::post('zone/post', 'ZoneController@create')->name('post.zone');
 Route::get('zone/edit/{id}', 'ZoneController@edit');
 Route::put('zone/update/{id}', 'ZoneController@update');
 Route::delete('zone/delete/{id}', 'ZoneController@delete');

@@ -15,6 +15,7 @@ class CreateOlevelsTable extends Migration
     {
         Schema::create('olevels', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
             $table->string('center_number');
             $table->integer('reg_no');
             $table->string('exam_year');
@@ -31,7 +32,6 @@ class CreateOlevelsTable extends Migration
             $table->string('grad4');
             $table->string('grad5');
 
-            $table->integer('type_id');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
