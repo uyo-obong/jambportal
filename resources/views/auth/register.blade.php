@@ -52,14 +52,14 @@
           <img src="{{ URL::to('assets/images/logo-icon.png') }}">
         </div>
         <div class="card-title text-uppercase text-center py-3">Profile</div>
-        <form id="signupForm" method="POST" action="{{ route('portal.create') }}">
+        <form id="signupForm"  method="POST" action="{{ route('portal.create') }}">
           @csrf
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">
                <div class="position-relative has-icon-left">
                 <label for="input-1" class="sr-only">Name</label>
-                <input type="text" id="input-1" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="First Name">
+                <input type="text" id="input-1" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" placeholder="First Name">
                 <div class="form-control-position">
                   <i class="icon-user"></i>
                 </div>
@@ -74,7 +74,7 @@
             <div class="col-md-6">
               <div class="position-relative has-icon-left">
                 <label for="input-14" class="sr-only">Enter Age</label>
-                <input type="text" id="input-14" name="age" value="{{ old('age') }}" class="form-control" placeholder="Enter Age" required>
+                <input type="text" id="input-14" name="age" value="{{ old('age') }}" class="form-control" placeholder="Enter Age" autocomplete="off" required>
                 <div class="form-control-position">
                   <i class="icon-user"></i>
                 </div>
@@ -86,7 +86,7 @@
       <div class="form-group">
        <div class="position-relative has-icon-left">
         <label for="exampleInputEmailId" class="sr-only">Email Address</label>
-        <input type="text" id="exampleInputEmailId" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email Address" required>
+        <input type="text" id="exampleInputEmailId" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email Address" autocomplete="off" required>
         <div class="form-control-position">
           <i class="icon-envelope-open"></i>
         </div>
@@ -95,7 +95,7 @@
     <div class="form-group">
      <div class="position-relative has-icon-left">
       <label for="exampleInputPassword" class="sr-only">Password</label>
-      <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Password" autocomplete="off" required>
       <div class="form-control-position">
         <i class="icon-lock"></i>
       </div>
@@ -104,7 +104,7 @@
   <div class="form-group">
    <div class="position-relative has-icon-left">
     <label for="exampleInputRetryPassword" class="sr-only">Retype Password</label>
-    <input type="password" id="exampleInputRetryPassword" name="password_confirmation" class="form-control" placeholder="Retry Password" required>
+    <input type="password" id="exampleInputRetryPassword" name="password_confirmation" class="form-control" placeholder="Retry Password" autocomplete="off" required>
     <div class="form-control-position">
       <i class="icon-lock"></i>
     </div>

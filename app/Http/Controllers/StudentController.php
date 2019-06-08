@@ -27,7 +27,10 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('profile.getProfile');
+        $pin = Institution::where('user_id', Auth::user()->id)->first();
+        $student = Auth::user()->load('student', 'olevel', 'institution');
+         // dd($student->first_name);
+        return view('profile.getProfile', compact('pin', 'student'));
     }
 
     public function getAll()
@@ -82,22 +85,34 @@ class StudentController extends Controller
 
         // This will allow the user to choose institution
         if ($olevel) {
-         Institution::updateOrCreate(
+           Institution::updateOrCreate(
             $this->createInstitution($request)
         );
-     }
+       }
 
 
-     return redirect()->back()->with('status','created successfully.');
- }
+       return redirect(route('home.student'))->with('status', 'Congrats, use the pin to make your payment');
+   }
 
- protected function createInstitution($request)
- {
+   protected function createInstitution($request)
+   {
+    // Available alpha caracters
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // generate a pin based on 2 * 5 digits + a random character
+    $pin = mt_rand(10000, 99999)
+    . mt_rand(10000, 99999)
+    . $characters[rand(0, strlen($characters) - 3)];
+
+        // shuffle the result
+    $string = str_shuffle($pin);
+
     $institution = [
         'institution_name' => $request['institution_name'],
         'department' => $request['department'],
         'school' => $request['school'],
         'user_id' => Auth::user()->id,
+        'reg_no' => $string,
     ];
 
     return $institution;

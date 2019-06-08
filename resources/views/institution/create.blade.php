@@ -39,6 +39,7 @@
 										<tr>
 											<th>#</th>
 											<th>Name Of Institution</th>
+											<th>Require Students</th>
 											<th>Location</th>
 											<th>Created</th>
 											<th class="text-center">Action</th>
@@ -50,6 +51,7 @@
 										<tr>
 											<td>{{ $loop->index + 1 }}</td>
 											<td>{{ $institution->institution_name }}</td>
+											<td>{{ $institution->number_of_students }}</td>
 											<td>{{ $institution->location }}</td>
 											<td>{{ $institution->created_at->diffForHumans() }}</td>
 											<td class="text-center">
@@ -99,6 +101,9 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<input class="form-control" type="text" name="name" placeholder="Institution Name">
+						</div>
+						<div class="form-group">
+							<input class="form-control" type="text" name="no_student" placeholder="Institution Name">
 						</div>
 						<div class="form-group">
 							<input class="form-control" type="text" name="location" placeholder="Location">

@@ -8,13 +8,19 @@ use App\School;
 
 class SchoolController extends Controller
 {
-
+    /**
+     * @return [type]
+     */
     public function index()
     {
         $schools = School::all();
         return view('school.create', compact('schools'));
     }
 
+    /**
+     * @param  Request
+     * @return [type]
+     */
     public function create(Request $request)
     {
         $school = new School;
@@ -24,7 +30,10 @@ class SchoolController extends Controller
         return redirect()->back()->with('success','Successfully Created.');
     }
 
-
+    /**
+     * @param  [type]
+     * @return [type]
+     */
     public function edit($id)
     {
         $school = School::where('id', $id)->first();

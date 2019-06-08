@@ -16,6 +16,8 @@ class CreateAllInstitutionsTable extends Migration
         Schema::create('all_institutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('institution_name');
+            $table->string('number_of_students');
+            $table->string('registered_students')->nullable();
             $table->string('location');
             $table->timestamps();
         });

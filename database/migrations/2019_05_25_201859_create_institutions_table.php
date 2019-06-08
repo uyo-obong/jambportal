@@ -18,6 +18,7 @@ class CreateInstitutionsTable extends Migration
             $table->string('institution_name');
             $table->string('department');
             $table->string('school');
+            $table->string('reg_no');
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/student/registration';
 
     /**
      * Create a new controller instance.
@@ -68,9 +68,9 @@ class RegisterController extends Controller
     {
 
         if($data['age'] <= 15 ){
-            return $redirectTo = '/';
+            return back()->with('status', 'You must be 16 years old and above to register');
         }
-        return User::create([
+        User::create([
             'first_name' => $data['name'],
             'age' => $data['age'],
             'email' => $data['email'],

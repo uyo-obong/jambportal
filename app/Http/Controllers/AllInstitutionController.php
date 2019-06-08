@@ -24,6 +24,7 @@ class AllInstitutionController extends Controller
 
 		$institution = new AllInstitution;
 		$institution->institution_name = $request->name;
+		$institution->number_of_students = $request->no_student;
 		$institution->location = $request->location;
 
 		$institution->save();

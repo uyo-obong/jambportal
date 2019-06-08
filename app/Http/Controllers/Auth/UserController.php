@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -21,6 +22,10 @@ class UserController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     public function showRegistrationForm()
     {
@@ -40,13 +45,40 @@ class UserController extends Controller
         if($data['age'] <= 15 ){
             return back()->with('status', 'You must be 16 years old and above to register');
         }
-         User::create([
+        $user = User::create([
             'first_name' => $data['name'],
             'age' => $data['age'],
+            'gender' => $data['gender'],
             'email' => $data['email'],
             'role' => 'student',
             'password' => Hash::make($data['password']),
         ]);
-         return redirect(route('register.student'));
+
+        $this->guard()->login($user);
+
+        return $this->registered($data, $user)
+                        ?: redirect()->to('/student/registration');
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        //
     }
 }

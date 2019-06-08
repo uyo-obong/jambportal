@@ -17,7 +17,7 @@ class CreateOlevelsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('center_number');
-            $table->integer('reg_no');
+            $table->string('reg_no');
             $table->string('exam_year');
            
             $table->string('sub1');
