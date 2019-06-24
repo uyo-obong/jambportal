@@ -35,7 +35,7 @@ class UserController extends Controller
     public function register(Request $data)
     {
         Validator::make($data->all(), [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
             'age' => 'required|integer|max:25',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -48,7 +48,6 @@ class UserController extends Controller
         $user = User::create([
             'first_name' => $data['name'],
             'age' => $data['age'],
-            'gender' => $data['gender'],
             'email' => $data['email'],
             'role' => 'student',
             'password' => Hash::make($data['password']),

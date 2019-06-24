@@ -16,9 +16,11 @@ class CreateAllInstitutionsTable extends Migration
         Schema::create('all_institutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('institution_name');
-            $table->string('number_of_students');
-            $table->string('registered_students')->nullable();
+            $table->integer('number_of_students');
+            $table->integer('registered_students')->default(0);
             $table->string('location');
+
+           
             $table->timestamps();
         });
     }

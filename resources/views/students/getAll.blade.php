@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('header_css')
+<!-- data tables css -->
+<link rel="stylesheet" href="{{ URL::to('data-tables/css/datatables.min.css') }}">
 @stop
 @section('content')
 
@@ -31,12 +33,16 @@
 						<div class="card-header"><i class="fa fa-table"></i> Students</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table id="example" class="table table-bordered">
+								<table id="responsive-table" class="display table table-bordered dt-responsive" style="width:100%">
+									{{-- id="example" class="table table-bordered"> --}}
 									<thead>
 										<tr>
 											<th>#</th>
 											<th>Student's Name</th>
+											<th>Reg No.</th>
+											<th>Amount</th>
 											<th>Email</th>
+											<th>Gender</th>
 											<th>Age</th>
 											<th>Phone No.</th>
 											<th>Address</th>
@@ -49,20 +55,32 @@
 										</tr>
 									</thead>
 									<tbody>
+										
 										@foreach($students as $student)
 										<tr>
 											<td>{{ $loop->index + 1 }}</td>
 											<td>
-												{{ $student->student->last_name }}, {{ $student->first_name }} {{ $student->student->middle_name }}
+												{{ $student->student?$student->student->last_name:'' }}, {{ $student->first_name }} {{ $student->student?$student->student->middle_name:'' }}
 											</td>
+											@foreach($printouts as $printout)
+											<td class="{{$printout->studentid == $student->id? 'btn btn-success':'btn btn-danger'}}"> {{ $student->institution->reg_no }}</td>
+											@endforeach
+											<td>{{ $student->payment?'₦'.$student->payment->amount:'' }}</td>
 											<td>{{ $student->email }}</td>
+											<td>{{ $student->gender }}</td>
 											<td>{{ $student->age }}</td>
-											<td>{{ $student->student->phone }}</td>
-											<td>{{ $student->student->address }}</td>
-											<td>{{ $student->student->city }}</td>
-											<td>{{ $student->student->state }}</td>
-											<td>{{ $student->institution->institution_name }}</td>
-											<td><a href="" class="btn btn-outline-primary">Update</a></td>
+											<td>{{ $student->student?$student->student->phone:'' }}</td>
+											<td>{{ $student->student?$student->student->address:'' }}</td>
+											<td>{{ $student->student?$student->student->city:'' }}</td>
+											<td>{{ $student->student?$student->student->state:'' }}</td>
+											<td>
+												@foreach($allinstitutions as $allinstitution )
+												
+												{{$student->institution->institution_name == $allinstitution->id ? $allinstitution->institution_name : '' }}
+												
+												@endforeach
+											</td>
+											@include('students.printout')
 										</tr>
 										@endforeach
 									</tbody>
@@ -84,5 +102,58 @@
 
 @stop
 @section('footer_js')
+<script type="text/javascript">
+	$(document).ready(function() {
+		/* When click edit user */
+		$(document).on('click', '.legendary', function(event) {
+			console.table(event.target);
 
+		//Listing to event
+		let button = $(event.target)
+		
+		//binding the event to data method
+		let studentid = button.data('studentid');
+		let studentfn = button.data('studentfn');
+		let studentmn = button.data('studentmn');
+		let studentln = button.data('studentln');
+		let studentphoto = button.data('studentphoto');
+		let studentage = button.data('studentage');
+		let studentgender = button.data('studentgender');
+		let studentemail = button.data('studentemail');
+		let studentamount = button.data('studentamount');
+		let studentregno = button.data('studentregno');
+		let studentphone = button.data('studentphone');
+		let studentaddress = button.data('studentaddress');
+		let studentcity = button.data('studentcity');
+		let studentstate = button.data('studentstate');
+		let studentinstitution = button.data('studentinstitution');
+		let studentfaculty = button.data('studentfaculty');
+		let studentdep = button.data('studentdep');
+		
+		let modal = $(document);
+		console.log(modal);
+		modal.find('#display #studentid').val(studentid);
+		modal.find('#display #studentfn').val(studentfn);
+		modal.find('#display #studentmn').val(studentmn);
+		modal.find('#display #studentln').val(studentln);
+		modal.find('#display #studentphoto').val(studentphoto);
+		modal.find('#display #studentage').val(studentage);
+		modal.find('#display #studentgender').val(studentgender);
+		modal.find('#display #studentemail').val(studentemail);
+		modal.find('#display #studentamount').val(studentamount);
+		modal.find('#display #studentregno').val(studentregno);
+		modal.find('#display #studentphone').val(studentphone);
+		modal.find('#display #studentaddress').val(studentaddress);
+		modal.find('#display #studentcity').val(studentcity);
+		modal.find('#display #studentstate').val(studentstate);
+		modal.find('#display #studentinstitution').val(studentinstitution);
+		modal.find('#display #studentfaculty').val(studentfaculty);
+		modal.find('#display #studentdep').val(studentdep);
+
+	});
+	});
+</script>
+<!-- datatable Js -->
+<script src="{{ URL::to('data-tables/js/datatables.min.js') }}"></script>
+<script src="{{ URL::to('data-tables/js/tbl-datatable-custom.js') }}"></script>
 @stop

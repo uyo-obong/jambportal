@@ -88,11 +88,11 @@ le"><i class="fa fa-star"></i> New Grade</h5>
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form  method="POST" action="{{ route('post.grade') }}" autocomplete="false">
+			<form  method="POST" action="{{ route('post.grade') }}" autofocus>
 				{{ csrf_field() }}
 				<div class="modal-body">
 					<div class="form-group">
-						<input class="form-control" type="text" name="name" placeholder="Enter Grade Point">
+						<input class="form-control" type="text" name="name" placeholder="Enter Grade Point" autocomplete="off" >
 					</div>
 				</div>
 				<div class="modal-footer">

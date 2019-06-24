@@ -39,7 +39,7 @@
 				<h5 class="mt-2 mb-3"><span class=" float-right"></span> Choice of Institution</h5>
 
 				<p>
-					<b>Name:</b> {{ $student->institution->institution_name }}
+					<b>Name:</b> {{  $allinstitution->institution_name }}
 				</p>
 
 				<p>

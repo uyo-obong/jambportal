@@ -13,7 +13,7 @@
 				<div class="col-sm-9">
 					<h4 class="page-title">Zone</h4>
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javaScript:void();">county</a></li>
+						<li class="breadcrumb-item"><a href="javaScript:void();">country</a></li>
 						<li class="breadcrumb-item active" aria-current="page">zone</li>
 					</ol>
 				</div>

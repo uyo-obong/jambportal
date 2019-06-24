@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AllInstitution;
+use App\Center;
 use App\Department;
 use App\Grade;
 use App\Institution;
 use App\Olevel;
+use App\PrintOut;
 use App\School;
 use App\Student;
 use App\Subject;
@@ -15,6 +17,10 @@ use App\User;
 use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class StudentController extends Controller
@@ -27,17 +33,25 @@ class StudentController extends Controller
 
     public function index()
     {
-        $pin = Institution::where('user_id', Auth::user()->id)->first();
+       // / dd(AllInstitution::find(Auth::user()));
+        $pin = Institution::where('user_id', auth()->user()->id)->first();
+        $allinstitution = AllInstitution::findOrFail(Auth::user())->first();
         $student = Auth::user()->load('student', 'olevel', 'institution');
-         // dd($student->first_name);
-        return view('profile.getProfile', compact('pin', 'student'));
+        return view('profile.getProfile', compact('pin', 'student', 'allinstitution'));
+        
     }
 
     public function getAll()
     {
-        $students = User::all()->load('student', 'olevel', 'institution');
-        //dd($students);
-        return view('students.getAll',compact('students'));
+        // $te = User::where('role', 'student')->get()->load('payment');
+        // dd($te);
+        $students = User::where('role', 'student')->get()
+                        ->load('student', 'olevel', 'institution', 'payment');
+        $allinstitutions = AllInstitution::all();
+        $centers = Center::all();
+        $printouts = PrintOut::all();
+        
+        return view('students.getAll', compact('students', 'allinstitutions', 'centers', 'printouts'));
     }
 
     public function registerStudent()
@@ -60,12 +74,16 @@ class StudentController extends Controller
         ]);
     }
 
+    
     public function create(Request $request)
     {
         // dd($request->all());
         $createUser = User::whereId(Auth::user()->id)->update([
+            'all_institution_id' => $request['allinstitution_id'],
             'first_name' => $request['first_name'],
             'email' => $request['email'],
+            'image' => $this->passport($request),
+            'gender' => $request['gender'],
             'age' => $request['age'],
         ]);
 
@@ -85,10 +103,17 @@ class StudentController extends Controller
 
         // This will allow the user to choose institution
         if ($olevel) {
-           Institution::updateOrCreate(
+           $institution = Institution::updateOrCreate(
             $this->createInstitution($request)
-        );
+        );  
        }
+
+       // if($institution)
+       //   {
+       //      AllInstitution::create([
+       //          'user_id' => Auth::user()->id
+       //      ]);
+       //   }
 
 
        return redirect(route('home.student'))->with('status', 'Congrats, use the pin to make your payment');
@@ -108,7 +133,7 @@ class StudentController extends Controller
     $string = str_shuffle($pin);
 
     $institution = [
-        'institution_name' => $request['institution_name'],
+        'institution_name' => $request['allinstitution_id'],
         'department' => $request['department'],
         'school' => $request['school'],
         'user_id' => Auth::user()->id,
@@ -156,6 +181,20 @@ protected function createStudent($request)
     ];
 
     return $student;
+}
+
+public function passport($request)
+{
+
+    Validator::make($request->all(), [
+        'file' => 'required|jpg,png,jpeg|max:90000'
+    ]);
+    $attach = $request->file('file');
+    $extension = $attach->getClientOriginalExtension();
+    Storage::disk('public')->put($attach->getFilename().'.'.$extension,  File::get($attach));
+
+    $store = $attach->getFilename().'.'.$extension;
+    return $store;
 }
 
 

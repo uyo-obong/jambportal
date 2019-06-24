@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'gender', 'email', 'role', 'age', 'password',
+        'all_institution_id', 'first_name', 'gender', 'email', 'role', 'age', 'password',
     ];
 
     /**
@@ -50,5 +50,20 @@ class User extends Authenticatable
     public function institution()
     {
         return $this->hasOne(Institution::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
+    public function allinstitution()
+    {
+        $this->belongsTo(AllInstitution::class, 'all_institution_id');
+    }
+
+    public function center()
+    {
+        $this->hasOne(Center::class);
     }
 }

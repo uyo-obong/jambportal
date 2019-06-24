@@ -30,9 +30,9 @@
           <div class="wizard-container">
 
             <div class="card wizard-card" data-color="blue" id="wizardProfile">
-              <form method="POST" action="{{ route('create.student') }}">
+              <form method="POST" action="{{ route('create.student') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+                <!--  You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
                 <div class="wizard-header">
                   <h3>
@@ -258,9 +258,11 @@
                     <div class="col-sm-8">
                       <div class="form-group">
                         <label for="Institution"> Institution *</label>
-                        <select name="institution_name" class="form-control single-select">
+                        <select name="allinstitution_id" class="form-control single-select">
                           @foreach($institutions as $institution)
-                          <option>{{ $institution->institution_name }}</option>
+                          <option value="{{ $institution->id }}">
+                            {{ $institution->institution_name }} <b>(has {{ $institution->registered_students }}/{{ $institution->number_of_students }} registered applicants)</b>
+                            </option>
                           @endforeach
                         </select>
                       </div>

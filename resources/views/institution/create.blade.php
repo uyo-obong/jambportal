@@ -65,6 +65,7 @@
 										<tfoot>
 											<th>#</th>
 											<th>Name Of Institution</th>
+											<th>Require Students</th>
 											<th>Location</th>
 											<th>Created</th>
 											<th class="text-center">Action</th>
@@ -103,7 +104,7 @@
 							<input class="form-control" type="text" name="name" placeholder="Institution Name">
 						</div>
 						<div class="form-group">
-							<input class="form-control" type="text" name="no_student" placeholder="Institution Name">
+							<input class="form-control" type="text" name="no_student" placeholder="Require Students To Admit">
 						</div>
 						<div class="form-group">
 							<input class="form-control" type="text" name="location" placeholder="Location">
