@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <div class="image-container set-full-height" style="background-image: url('/studreg/img/wizard.jpg')">
+  <div class="image-container set-full-height" style="background-image: url('/studreg/img/IMG_0674.jpg')">
 
     <!--   Big container   -->
     <div class="container">

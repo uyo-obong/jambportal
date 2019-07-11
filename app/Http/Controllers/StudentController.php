@@ -50,7 +50,7 @@ class StudentController extends Controller
         $allinstitutions = AllInstitution::all();
         $centers = Center::all();
         $printouts = PrintOut::all();
-        
+        // dd($students);
         return view('students.getAll', compact('students', 'allinstitutions', 'centers', 'printouts'));
     }
 

@@ -8,12 +8,15 @@
  </div>
  <ul class="sidebar-menu do-nicescrol">
   <li class="sidebar-header">NAVIGATION</li>
+  @can('student')
   <li>
-    <a href="calendar.html" class="waves-effect">
+    <a href="/" class="waves-effect">
       <i class="icon-user icons"></i> <span>Profile</span>
     </a>
   </li>
+  @endcan
 
+  @can('view')
   <li class="{{ request()->is('institutions') ? 'active' : '' }}">
     <a href="{{ route('all.institutions') }}" class="waves-effect">
      <i class="icon-organization"></i> <span>Insitutions</span>
@@ -38,11 +41,13 @@
  </a>
 </li>
 
+
 <li class="{{ request()->is('zones') ? 'active' : '' }}">
   <a href="{{ route('index.zone') }}" class="waves-effect">
    <i class="icon-location-pin"></i> <span>Zones</span>
  </a>
 </li>
+
 
 <li class="{{ request()->is('types') ? 'active' : '' }}">
   <a href="javaScript:void();" class="waves-effect">
@@ -60,6 +65,7 @@
     <a href="{{ route('index.grade') }}"><i class="fa fa-circle-o"></i>Grades</a></li>
 </ul>
 </li>
+@endcan
 
 </ul>
 

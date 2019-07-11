@@ -62,9 +62,9 @@
 											<td>
 												{{ $student->student?$student->student->last_name:'' }}, {{ $student->first_name }} {{ $student->student?$student->student->middle_name:'' }}
 											</td>
-											@foreach($printouts as $printout)
-											<td class="{{$printout->studentid == $student->id? 'btn btn-success':'btn btn-danger'}}"> {{ $student->institution->reg_no }}</td>
-											@endforeach
+											{{-- @foreach($printouts as $printout) --}}
+											<td class="{{ !$student->payment == null ? 'btn btn-success':'btn btn-danger'}}"> {{ $student->institution->reg_no }}</td>
+											{{-- @endforeach --}}
 											<td>{{ $student->payment?'₦'.$student->payment->amount:'' }}</td>
 											<td>{{ $student->email }}</td>
 											<td>{{ $student->gender }}</td>

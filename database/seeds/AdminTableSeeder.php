@@ -19,7 +19,8 @@ class AdminTableSeeder extends Seeder
     		'age' => '24',
     		'gender' => 'male',
     		'email' => 'slido@gmail.com',
-    		'role' => 'admin',
+			'role' => 'admin',
+			'image' => 'default.jpg',
     		'password' => Hash::make('password'),
     		'remember_token' => Str::random(10),
     	]);

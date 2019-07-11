@@ -24,13 +24,6 @@ Route::get('type/edit/{id}', 'TypeController@edit');
 Route::put('type/update/{id}', 'Type@update');
 Route::delete('type/delete/{id}', 'TypeController@delete');
 
-// EXAM ROUTE
-// Route::get('exam', 'ExamController@index')->name('index.exam');
-// Route::post('exam/post', 'ExamController@create')->name('post.exam');
-// Route::get('exam/edit/{id}', 'ExamController@edit');
-// Route::put('exam/update/{id}', 'Exam@update');
-// Route::delete('exam/delete/{id}', 'ExamController@delete');
-
 // INSTITUTION ROUTE
 Route::get('save', 'InstitutionController@index');
 Route::post('save/post', 'InstitutionController@create');
@@ -100,7 +93,7 @@ Route::post('payment', 'PaymentController@makePayment')->name('post.payment');
 Route::get('payment/edit/{id}', 'PaymentController@edit');
 
 // PRINT SLIP ROUTE
-Route::get('getprintout', 'PrintOutController@getprintout');
+Route::get('getprintout', 'PrintOutController@getprintout')->name('get.print');
 Route::post('print', 'PrintOutController@print')->name('post.print');
 
 

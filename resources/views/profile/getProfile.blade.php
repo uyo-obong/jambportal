@@ -43,9 +43,9 @@
 							<div class="pull-left"><b>Reg No.:</b> {{auth()->user()->institution->reg_no }}</div><br />
 							<hr>
 							@if(isset(auth()->user()->payment->reg_no))
-							<div class="pull-right"><button type="button"
-									class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
-									data-target="#modal-animation-14">Print Your Slip</button></div>
+							<div class="pull-right">
+								<a class="btn btn-outline-primary" href="{{ route('get.print') }}">Print Your Slip</a>
+							</div>
 							@else
 							<div class="pull-right"><button type="button"
 									class="btn btn-outline-primary waves-effect waves-light" data-toggle="modal"
