@@ -18,9 +18,9 @@ class GradeTableSeeder extends Seeder
         	['name' => 'A',  'created_at' => $date, 'updated_at' => $date],
         	['name' => 'B',  'created_at' => $date, 'updated_at' => $date],
         	['name' => 'C',  'created_at' => $date, 'updated_at' => $date],
-        	['name' => 'D',  'created_at' => $date, 'updated_at' => $date],
-        	['name' => 'E',  'created_at' => $date, 'updated_at' => $date],
-        	['name' => 'F',  'created_at' => $date, 'updated_at' => $date],
+        	// ['name' => 'D',  'created_at' => $date, 'updated_at' => $date],
+        	// ['name' => 'E',  'created_at' => $date, 'updated_at' => $date],
+        	// ['name' => 'F',  'created_at' => $date, 'updated_at' => $date],
         ];
         Grade::insert($grade);
     }

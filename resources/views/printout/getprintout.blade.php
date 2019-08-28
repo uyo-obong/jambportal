@@ -12,40 +12,6 @@
     <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
 </head>
 
-@if (!$print)
-<div style="margin-right:30%; margin-top:5%" class="card text-center offset-3">
-    <div class="card-header">
-        Acknowledgement Slip
-    </div>
-    <div class="card-body">
-        <p class="card-text">We are kindly sorry! Your acknowledgement slip will be available within 24hrs.</p>
-        <a href="/" class="btn btn-primary">Go back</a>
-    </div>
-    <div class="card-footer text-muted">
-        <script>
-            var currentTime = new Date(),
-             hours = currentTime.getHours(),
-              minutes = currentTime.getMinutes();
-                    
-               if (minutes < 10) {
-                        minutes = "0" + minutes;
-                }
-                    
-                var suffix = "AM";
-                if (hours >= 12) {
-                 suffix = "PM";
-                  hours = hours - 12;
-                }
-                 if (hours == 0) {
-                  hours = 12;
-                }
-                    
-            document.write(hours + ":" + minutes + " " + suffix)
-        </script>
-    </div>
-</div>
-@else
-
 <body onload="window.print()">
     <section class="mt-5">
         <div class="container border p-5">
@@ -53,8 +19,8 @@
                 <div class="col-md-3 text-center"><img src="assets/images/logo-icon.png" height="100px" width="100px"
                         alt=""></div>
                 <div class="col-md-6 text-center">
-                    <h5>Joint Admission and Matriculation Board</h5>
-                    <p>2019/2020 Putme Acknoledgement slip</p>
+                    <h2>{{ $user->institution }}</h2>
+                    <p>2019/2020 Postume Acknowledgement slip</p>
                 </div>
                 <div class="col-md-3 text-center"><img src="{{ url('uploads/'.auth()->user()->image) }}" height="100px"
                         width="100px" alt=""></div>
@@ -72,7 +38,7 @@
                             <p>Reg. Number</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->regno }}</p>
+                            <p>{{ $user->institutions->reg_no }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
@@ -80,7 +46,7 @@
                             <p>Applicant name</p>
                         </div>
                         <div class="col-md-6">
-                            <p>wisdom steve tim</p>
+                            <p>{{ $user->fullName() }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
@@ -88,15 +54,15 @@
                             <p>Sex</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->gender }}</p>
+                            <p>{{ $user->gender }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
                         <div class="col-md-6">
-                            <p>Age</p>
+                            <p>Date of Birth</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->age }}</p>
+                            <p>{{ $user->student->dob }}</p>
                         </div>
                     </div>
                 </div>
@@ -106,7 +72,7 @@
                             <p>State Of Origin</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->state }}</p>
+                            <p>{{ $user->student->state }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
@@ -114,7 +80,7 @@
                             <p>LGA Of Origin</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->city }}</p>
+                            <p>{{ $user->student->city }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
@@ -122,7 +88,7 @@
                             <p>Contact Address</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->address }}</p>
+                            <p>{{ $user->student->address }}</p>
                         </div>
                     </div>
                     <div class="row mx-auto">
@@ -130,91 +96,71 @@
                             <p>Mobile No.</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $print->phone }}</p>
+                            <p>{{ $user->student->phone }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-md-12 text-center bg-primary text-light">
+
+            <div class="row">
+                <div class="col-md-12 text-center mt-3 mb-3 bg-primary text-light">
                     <h3>Jamb Details</h3>
                 </div>
-            </div> --}}
-            {{-- <div class="row mx-auto">
+            </div>
+            <div class="row mx-auto">
                 <div class="col-md-6">
-                    <div class="row mb-4 mt-4">
+                    <div class="row mx-auto">
                         <div class="col-md-6">
-                            <p>applicant name</p>
+                            <p>Jamb Reg. Number</p>
                         </div>
                         <div class="col-md-6">
-                            <p>wisdom steve tim</p>
+                            <p>{{ $user->institutions->jamb_reg_no }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
-                    <div class="row mb-4 mt-4 mx-auto">
+                    <div class="row mx-auto">
                         <div class="col-md-6">
-                            <p>applicant name</p>
+                            <p>Jamb Score</p>
                         </div>
                         <div class="col-md-6">
-                            <p>wisdom steve tim</p>
+                            <p>{{ $user->institutions->jamb_score }}</p>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
+
+
             <div class="row">
                 <div class="col-md-12 text-center mt-4 mb-1 text-light bg-primary">
                     <h3>Programme Details</h3>
                 </div>
             </div>
-            <div class="row mt-4 mb-4 mx-auto">
-                @foreach ($institutions as $institution)
-                @foreach ($centers as $center)
-                @if($institution->id == $user->all_institution_id && $center->id == $print->center_id)
+            <div class="row mx-auto">
                 <div class="col-md-6">
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div class="col-md-6">
-                            <p>Choice Of Instituion</p>
+                            <p>School</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ $institution->institution_name}}</p>
+                            <p>{{ $user->institutions->school }}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
-                    <div class="row">
+                    <div class="row mx-auto">
                         <div class="col-md-6">
-                            <p>Department</p>
+                            <p>Programme</p>
                         </div>
                         <div class="col-md-6">
-                            <p>{{$user->institution->department }}</p>
+                            <p>{{ $user->institutions->department }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Center Name</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ $center->name}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>Sit Number</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p>{{ $print->sit_no }}</p>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-                @endforeach
             </div>
+
             <div class="row text-center">
                 <div class="col-md-12 bg-primary text-light">
                     <h3>O-Level Result</h3>
@@ -353,7 +299,15 @@
                 </div>
             </div>
             <hr>
-            <p style="text-align:center;"> <a href="/">done</a></p>
+            <p style="text-align:center;"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    {{ __('Done') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </p>
         </div>
     </section>
 
@@ -373,6 +327,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
-@endif
+
 
 </html>

@@ -15,10 +15,10 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
     	User::create([
-    		'first_name' => 'Slido',
-    		'age' => '24',
+    		'first_name' => 'Slydo',
+    		'amount' => '',
     		'gender' => 'male',
-    		'email' => 'slido@gmail.com',
+    		'email' => 'slydo@gmail.com',
 			'role' => 'admin',
 			'image' => 'default.jpg',
     		'password' => Hash::make('password'),

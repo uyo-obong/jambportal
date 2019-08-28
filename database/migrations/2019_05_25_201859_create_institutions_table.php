@@ -15,8 +15,10 @@ class CreateInstitutionsTable extends Migration
     {
         Schema::create('institutions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('institution_name');
+            $table->string('institution');
             $table->string('department');
+            $table->string('jamb_reg_no');
+            $table->string('jamb_score');
             $table->string('school');
             $table->string('reg_no');
 

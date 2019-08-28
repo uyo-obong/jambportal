@@ -16,6 +16,7 @@ Route::get('/', 'StudentController@index')->name('home.student');
 Route::get('students', 'StudentController@getAll')->name('getall.student');
 Route::get('student/registration', 'StudentController@registerStudent')->name('register.student');
 Route::post('student/create', 'StudentController@create')->name('create.student');
+Route::put('student/update/{id}', 'StudentController@update')->name('update.student');
 
 // TYPE ROUTE
 Route::get('types', 'TypeController@index')->name('index.type');

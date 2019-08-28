@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -29,21 +30,22 @@ class LoginController extends Controller
     // protected $redirectTo = '/';
     protected function authenticated(Request $request, $user)
     {
-        //dd(Auth::user());
-      switch (auth()->user()->role) {
+        $verify = Auth::user()->gender;
 
-        case 'student':
-        return redirect('/');
-        break;
+        switch (auth()->user()->role) {
 
-        case 'admin':
-        return redirect('/students');
-        break;
+            case 'student':
+                if ($verify == null) {
+                    return redirect()->to('/student/registration');
+                }
+                return redirect(route('get.print'));
+                break;
 
-        
+            case 'admin':
+                return redirect('/students');
+                break;
+        }
     }
-
-}
 
     /**
      * Create a new controller instance.

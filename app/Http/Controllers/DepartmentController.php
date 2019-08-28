@@ -22,6 +22,7 @@ class DepartmentController extends Controller
 
 		$department = new Department;
 		$department->name = $request->name;
+		$department->alias = $request->alias;
 		$department->save();
 
 		return redirect()->back()->with('success','New department has been added.');

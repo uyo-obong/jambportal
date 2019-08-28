@@ -13,13 +13,13 @@ class PrintOutController extends Controller
 {
 	public function getprintout()
 	{
-		$user = User::find(auth()->user()->id)->load('institution', 'payment');
-		$print = PrintOut::where('studentid', auth()->user()->id)->first();
+		$user = User::find(auth()->user()->id)->load('institutions', 'student');
 		$olevel = Olevel::where('user_id', auth()->user()->id)->first();
-		$institutions = AllInstitution::all();
 		$centers = Center::all();
-// dd($olevel);
-		return view('printout.getprintout', compact('user', 'print', 'olevel',  'institutions', 'centers'));
+
+		// dd($user->institutions);
+
+		return view('printout.getprintout', compact('user', 'olevel', 'centers'));
 	}
 
 	public function print(Request $request)

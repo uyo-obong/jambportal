@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Rocker - Bootstrap4  Admin Dashboard Template</title>
+  <title> Registration Portal</title>
   <!--favicon-->
   <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <!-- Bootstrap core CSS-->
@@ -82,7 +82,7 @@
   <div class="text-center pt-3">
     {{-- <p></p> --}}
     <hr>
-    <p class="text-muted">Do not have a profile? <a href="{{ route('portal.register') }}"> Register here</a></p>
+    <p class="text-muted">You can <a href="{{ route('portal.register') }}"> Apply here</a></p>
   </div>
 </form>
 </div>

@@ -41,17 +41,15 @@
 											<th>Student's Name</th>
 											<th>Reg No.</th>
 											<th>Amount</th>
+											<th>School</th>
+											<th>Department</th>
 											<th>Email</th>
 											<th>Gender</th>
-											<th>Age</th>
+											{{-- <th>Age</th> --}}
 											<th>Phone No.</th>
 											<th>Address</th>
 											<th>City</th>
 											<th>State</th>
-											<th>Institution</th>
-											<th>Action</th>
-
-											{{-- <th>Remove</th> --}}
 										</tr>
 									</thead>
 									<tbody>
@@ -63,24 +61,19 @@
 												{{ $student->student?$student->student->last_name:'' }}, {{ $student->first_name }} {{ $student->student?$student->student->middle_name:'' }}
 											</td>
 											{{-- @foreach($printouts as $printout) --}}
-											<td class="{{ !$student->payment == null ? 'btn btn-success':'btn btn-danger'}}"> {{ $student->institution->reg_no }}</td>
+											<td class="{{ !$student->amount == null ? 'btn btn-success':'btn btn-danger'}}"> {{ $student->institutions?$student->institutions->reg_no: 'NOT PROCEED' }}</td>
 											{{-- @endforeach --}}
-											<td>{{ $student->payment?'₦'.$student->payment->amount:'' }}</td>
+											<td>{{ $student->amount?'₦'.$student->amount:'' }}</td>
+											<td>{{ $student->institutions ? $student->institutions->school : '' }}</td>
+											<td>{{ $student->institutions ? $student->institutions->department : '' }}</td>
 											<td>{{ $student->email }}</td>
 											<td>{{ $student->gender }}</td>
-											<td>{{ $student->age }}</td>
 											<td>{{ $student->student?$student->student->phone:'' }}</td>
 											<td>{{ $student->student?$student->student->address:'' }}</td>
 											<td>{{ $student->student?$student->student->city:'' }}</td>
 											<td>{{ $student->student?$student->student->state:'' }}</td>
-											<td>
-												@foreach($allinstitutions as $allinstitution )
-												
-												{{$student->institution->institution_name == $allinstitution->id ? $allinstitution->institution_name : '' }}
-												
-												@endforeach
-											</td>
-											@include('students.printout')
+											
+											{{-- @include('students.printout') --}}
 										</tr>
 										@endforeach
 									</tbody>

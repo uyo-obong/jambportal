@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
-  <title>Rocker - Bootstrap4  Admin Dashboard Template</title>
+  <title> Registration Portal</title>
   <!--favicon-->
   <link rel="icon" href="{{ URL::to('assets/images/favicon.ico') }}" type="image/x-icon">
   <!-- Bootstrap core CSS-->
@@ -40,8 +40,8 @@
     <div class="card mb-0">
      <div class="bg-signup2"></div>
      <div class="card-img-overlay rounded-left my-5">
-       <h2 class="text-white">Create Your Profile</h2>
-       <p class="card-text text-white pt-3">You have to create profile before you can register for JAMB CBT Exam. And also note that this profile is only valid for one candidate and also, you must be 16 years and above in other to register.</p>
+       <h2 class="text-white">Online Payment Portal</h2>
+       <p class="card-text text-white pt-3">You can make payment online with your details or you can visit the nearest bank to make payment after return to the site to proceed your Registration.</p>
      </div>
    </div>
 
@@ -51,7 +51,7 @@
         <div class="text-center">
           <img src="{{ URL::to('assets/images/logo-icon.png') }}">
         </div>
-        <div class="card-title text-uppercase text-center py-3">Profile</div>
+        <div class="card-title text-uppercase text-center py-3">Make Payment</div>
         <form id="signupForm"  method="POST" action="{{ route('portal.create') }}">
           @csrf
           <div class="form-group">
@@ -73,8 +73,8 @@
             </div>
             <div class="col-md-6">
               <div class="position-relative has-icon-left">
-                <label for="input-14" class="sr-only">Enter Age</label>
-                <input type="text" id="input-14" name="age" value="{{ old('age') }}" class="form-control" placeholder="Enter Age" autocomplete="off" required>
+                <label for="input-14" class="sr-only">Amount</label>
+                <input type="text" id="input-14" name="amount" value="{{ old('amount') }}" class="form-control" placeholder="Amount" autocomplete="off" required>
                 <div class="form-control-position">
                   <i class="icon-user"></i>
                 </div>
@@ -116,10 +116,10 @@
   <label for="user-checkbox">I Accept terms & conditions</label>
 </div>
 </div>
-<button type="submit" class="btn btn-outline-primary btn-block waves-effect waves-light">Create</button>
+<button type="submit" class="btn btn-outline-primary btn-block waves-effect waves-light">Continue</button>
 <div class="text-center pt-3">
  <hr>
- <p class="text-muted">Already have an profile? <a href="{{ route('login') }}"> Login here</a></p>
+ <p class="text-muted">Already make payment? <a href="{{ route('login') }}"> Proceed here</a></p>
 </div>
 </form>
 </div>

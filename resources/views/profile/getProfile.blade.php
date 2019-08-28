@@ -16,6 +16,7 @@
 
 <div class="content-wrapper">
 	<div class="container-fluid">
+
 		<!-- Breadcrumb-->
 		<div class="row pt-2 pb-2">
 			<div class="col-sm-9">
@@ -30,6 +31,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="profile-card-3">
+
 					<div class="card">
 						<div class="user-fullimage">
 							<img src="{{ url('uploads/'.auth()->user()->image) }}" height="300" alt="user avatar"
@@ -56,6 +58,9 @@
 				</div>
 			</div>
 			<div class="col-lg-8">
+				@if(session()->has('message'))
+				<div class="alert alert-success">{{ session()->get('message') }}</div>
+				@endif
 				<div class="card">
 					<div class="card-body">
 						<ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">

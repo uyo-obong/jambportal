@@ -36,18 +36,18 @@ class UserController extends Controller
     {
         Validator::make($data->all(), [
             'first_name' => 'required|string|max:255',
-            'age' => 'required|integer|max:25',
+            'amount' => 'required|integer|max:25',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
 
-        if($data['age'] <= 15 ){
-            return back()->with('status', 'You must be 16 years old and above to register');
+        if($data['amount'] <= 4999 ){
+            return back()->with('status', 'Oopz! applicants are to pay ₦5000 only.');
         }
         $user = User::create([
             'first_name' => $data['name'],
-            'age' => $data['age'],
+            'amount' => $data['amount'],
             'email' => $data['email'],
             'role' => 'student',
             'password' => Hash::make($data['password']),

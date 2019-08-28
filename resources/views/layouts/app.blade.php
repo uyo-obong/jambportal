@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ 'Jamb Portal' }}</title>
+    <title>{{ 'Registration Portal' }}</title>
 
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <!-- Vector CSS -->

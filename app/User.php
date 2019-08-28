@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'all_institution_id', 'first_name', 'gender', 'email', 'role', 'age', 'password',
+        'all_institution_id', 'first_name', 'gender', 'email', 'role', 'amount',  'password',
     ];
 
     /**
@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function fullName()
+    {
+        return $this->load('student')->student->last_name . ', ' . $this->first_name . ' ' . $this->load('student')->student->middle_name;
+    }
+
     public function student()
     {
         return $this->hasOne(Student::class);
@@ -47,7 +52,7 @@ class User extends Authenticatable
         return $this->hasOne(Olevel::class);
     }
 
-    public function institution()
+    public function institutions()
     {
         return $this->hasOne(Institution::class);
     }

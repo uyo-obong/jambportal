@@ -37,6 +37,7 @@
 										<tr>
 											<th>#</th>
 											<th>Departments</th>
+											<th>Alias</th>
 											<th>Created</th>
 											<th class="text-center">Action</th>
 											{{-- <th>Remove</th> --}}
@@ -47,6 +48,7 @@
 										<tr>
 											<td>{{ $loop->index + 1 }}</td>
 											<td>{{ $department->name }}</td>
+											<td>{{ $department->alias }}</td>
 											<td>{{ $department->created_at->diffForHumans() }}</td>
 											<td class="text-center">
 												<a href="" class=" btn btn-outline-primary">Update</a>
@@ -89,6 +91,9 @@
 					<div class="form-group">
 						<input class="form-control" type="text" name="name" placeholder="Department">
 					</div>
+					<div class="form-group">
+							<input class="form-control" type="text" name="alias" placeholder="Alias">
+						</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

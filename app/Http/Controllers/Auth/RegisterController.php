@@ -52,7 +52,7 @@ class RegisterController extends Controller
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'age' => ['required', 'integer', 'max:25'],
+            'amount' => ['required', 'integer', 'max:25'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -67,12 +67,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        if($data['age'] <= 15 ){
-            return back()->with('status', 'You must be 16 years old and above to register');
+        if($data['age'] <= 4999 ){
+            return back()->with('status', 'Oopz! the applicant are to pay ₦5000 only.');
         }
         User::create([
             'first_name' => $data['name'],
-            'age' => $data['age'],
+            'amount' => $data['amount'],
             'email' => $data['email'],
             'role' => 'student',
             'password' => Hash::make($data['password']),

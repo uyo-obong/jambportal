@@ -21,7 +21,9 @@ class SubjectTableSeeder extends Seeder
         	['name' => 'Chemistry',  'created_at' => $date, 'updated_at' => $date],
         	['name' => 'Biology',  'created_at' => $date, 'updated_at' => $date],
         	['name' => 'Economics',  'created_at' => $date, 'updated_at' => $date],
-        	['name' => 'Government',  'created_at' => $date, 'updated_at' => $date],
+        	['name' => 'Commerce',  'created_at' => $date, 'updated_at' => $date],
+        	['name' => 'Lit. In English',  'created_at' => $date, 'updated_at' => $date],
+        	['name' => 'Geography',  'created_at' => $date, 'updated_at' => $date],
         ];
 
         Subject::insert($subjects);

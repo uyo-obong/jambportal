@@ -15,10 +15,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('all_institution_id')->unsigned()->nullable();
+            $table->string('institution')->nullable();
 
             $table->string('first_name');
-            $table->string('age');
+            $table->string('amount');
             $table->string('gender')->nullable();
             $table->string('image')->nullable();
             $table->enum('role', ['student', 'admin']);

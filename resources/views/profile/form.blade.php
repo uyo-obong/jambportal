@@ -1,74 +1,45 @@
 <div class="tab-pane" id="form">
-	<form>
+	<form method="POST" action="{{ route('update.student', $student->id) }}">
+		{{ method_field('put') }}
+
+		@csrf
+
+		<input class="form-control" name="studentId" type="hidden" value="{{ $student->id }}">
+
 		<div class="form-group row">
 			<label class="col-lg-3 col-form-label form-control-label">First name</label>
 			<div class="col-lg-9">
-				<input class="form-control" type="text" value="Mark">
+				<input class="form-control" name="first_name" type="text" value="{{ $student->first_name }}">
 			</div>
 		</div>
+		<div class="form-group row">
+			<label class="col-lg-3 col-form-label form-control-label">Middle name</label>
+			<div class="col-lg-9">
+				<input class="form-control" name="middle_name" type="text" value="{{ $student->student->middle_name }}">
+			</div>
+		</div>
+		
 		<div class="form-group row">
 			<label class="col-lg-3 col-form-label form-control-label">Last name</label>
 			<div class="col-lg-9">
-				<input class="form-control" type="text" value="Jhonsan">
+				<input class="form-control" name="last_name" type="text" value="{{ $student->student->last_name }}">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Email</label>
+			<label class="col-lg-3 col-form-label form-control-label">Phone No.</label>
 			<div class="col-lg-9">
-				<input class="form-control" type="email" value="mark@example.com">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Change profile</label>
-			<div class="col-lg-9">
-				<input class="form-control" type="file">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Website</label>
-			<div class="col-lg-9">
-				<input class="form-control" type="url" value="">
+				<input class="form-control" name="phone_number" type="text" value="{{ $student->student->phone }}">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-lg-3 col-form-label form-control-label">Address</label>
 			<div class="col-lg-9">
-				<input class="form-control" type="text" value="" placeholder="Street">
+				<input class="form-control" name="address" type="text" value="{{ $student->student->address }}">
 			</div>
 		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label"></label>
-			<div class="col-lg-6">
-				<input class="form-control" type="text" value="" placeholder="City">
-			</div>
-			<div class="col-lg-3">
-				<input class="form-control" type="text" value="" placeholder="State">
-			</div>
-		</div>
-
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Username</label>
+		<div class="form-group row float-right">
 			<div class="col-lg-9">
-				<input class="form-control" type="text" value="jhonsanmark">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Password</label>
-			<div class="col-lg-9">
-				<input class="form-control" type="password" value="11111122333">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-			<div class="col-lg-9">
-				<input class="form-control" type="password" value="11111122333">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-lg-3 col-form-label form-control-label"></label>
-			<div class="col-lg-9">
-				<input type="reset" class="btn btn-secondary" value="Cancel">
-				<input type="button" class="btn btn-primary" value="Save Changes">
+				<button type="submit" class="btn btn-primary">Save Changes</button>
 			</div>
 		</div>
 	</form>

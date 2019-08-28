@@ -3,7 +3,7 @@
    <div class="brand-logo">
     <a href="index-2.html">
      <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-     <h5 class="logo-text">Jamb Portal</h5>
+     <h5 class="logo-text">Portal</h5>
    </a>
  </div>
  <ul class="sidebar-menu do-nicescrol">
@@ -17,12 +17,6 @@
   @endcan
 
   @can('view')
-  <li class="{{ request()->is('institutions') ? 'active' : '' }}">
-    <a href="{{ route('all.institutions') }}" class="waves-effect">
-     <i class="icon-organization"></i> <span>Insitutions</span>
-   </a>
- </li>
-
  <li class="{{ request()->is('schools') ? 'active' : '' }}">
   <a href="{{ route('index.school') }}" class="waves-effect">
    <i class="icon-loop"></i> <span>Faculties</span>
@@ -55,8 +49,6 @@
    <span>Exams</span> <i class="fa fa-angle-left pull-right"></i>
  </a>
  <ul class="sidebar-submenu">
-  <li class="{{ request()->is('centers') ? 'active' : '' }}">
-    <a href="{{ route('index.center') }}"><i class="fa fa-circle-o"></i>Exam Center</a></li>
   <li class="{{ request()->is('types') ? 'active' : '' }}">
     <a href="{{ route('index.type') }}"><i class="fa fa-circle-o"></i>Exam Type</a></li>
     <li class="{{ request()->is('subjects') ? 'active' : '' }}">
