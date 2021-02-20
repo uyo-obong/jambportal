@@ -55,7 +55,7 @@ class SubjectController extends Controller
         $subject-> name = $request->input('name');
         $subject-> grades = $request->input('grades');
         $subject->save();
-        return response('post updated succesfully');
+        return response('post updated successfully');
 
     }
 
